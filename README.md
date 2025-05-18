@@ -1,9 +1,9 @@
 # STK_datvanphong
-/*
-STILLTHINKING
-Tên chung: Quản lí hệ thống đặt phòng dịch vụ cho doanh nghiệp (STKdatvanphong)
-Quản lí đặt phòng: Quản lý danh sách phòng,loại phòng, tình trạng phòng (còn trống, đã đặt, đang sử dụng, bảo trì)
-Xác minh, phân quyền và quản lí các đối tượng người dùng: Người đặt phòng, Người cho thuê phòng, Admin…
+
+#STILLTHINKING
+#Tên chung: Quản lí hệ thống đặt phòng dịch vụ cho doanh nghiệp (STKdatvanphong)
+#Quản lí đặt phòng: Quản lý danh sách phòng,loại phòng, tình trạng phòng (còn trống, đã đặt, đang sử dụng, bảo trì)
+#Xác minh, phân quyền và quản lí các đối tượng người dùng: Người đặt phòng, Người cho thuê phòng, Admin…
 Dịch vụ gửi thông báo (Notification Service): email/SMS xác nhận đặt phòng, nhắc nhở lịch đặt, thông báo khuyến mãi.
 Dịch vụ đánh giá và phản hồi khách hàng: Khách hàng có thể đánh giá, bình luận về dịch vụ phòng, thái độ của chủ cho thuê,…
 Dịch vụ tìm kiếm và gợi ý phòng:Tìm kiếm theo: Loại phòng, giá, vị trí, tiện nghi; gợi ý phòng phù hợp dựa trên lịch sử đặt phòng.
