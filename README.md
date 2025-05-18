@@ -1,5 +1,5 @@
 # STK_datvanphong
-
+/*
 STILLTHINKING
 Tên chung: Quản lí hệ thống đặt phòng dịch vụ cho doanh nghiệp (STKdatvanphong)
 Quản lí đặt phòng: Quản lý danh sách phòng,loại phòng, tình trạng phòng (còn trống, đã đặt, đang sử dụng, bảo trì)
@@ -41,3 +41,4 @@ Thỏa thuận và xác nhận cho thuê
 Hủy hoặc xác nhận cho thuê trên hệ thống
 Người thuê đánh giá và rating trên hệ thống
 Admin cập nhật đánh giá lên web
+*/
