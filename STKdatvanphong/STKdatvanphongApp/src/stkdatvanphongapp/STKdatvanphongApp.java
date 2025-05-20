@@ -19,7 +19,7 @@ public class STKdatvanphongApp {
     public static void main(String[] args) {
         // TODO code application logic here
             
-        new DangNhap().setVisible(true);
+      
 
   
     }
