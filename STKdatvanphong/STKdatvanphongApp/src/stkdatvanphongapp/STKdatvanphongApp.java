@@ -3,11 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package stkdatvanphongapp;
-
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.*;
 /**
  *
  * @author admin
  */
+
 public class STKdatvanphongApp {
 
     /**
@@ -15,6 +18,16 @@ public class STKdatvanphongApp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+            
+        new DangNhap().setVisible(true);
+
+  
+    }
     }
     
-}
+
+
+
+
+
+  
