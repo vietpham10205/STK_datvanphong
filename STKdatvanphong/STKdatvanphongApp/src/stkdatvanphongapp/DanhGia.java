@@ -15,6 +15,7 @@ public class DanhGia extends javax.swing.JFrame {
      */
     public DanhGia() {
         initComponents();
+        setLocationRelativeTo(null); 
     }
 
     /**
@@ -30,68 +31,68 @@ public class DanhGia extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        vietdanhgia = new javax.swing.JTextArea();
+        dg5sao = new javax.swing.JRadioButton();
+        dg4sao = new javax.swing.JRadioButton();
+        dg3sao = new javax.swing.JRadioButton();
+        dg2sao = new javax.swing.JRadioButton();
+        dg1sao = new javax.swing.JRadioButton();
+        button_taodanhgiamoi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(85, 107, 47));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Đánh Giá");
+        jLabel1.setText("Đánh giá dịch vụ");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Viết đánh giá");
-        jScrollPane1.setViewportView(jTextArea1);
+        vietdanhgia.setColumns(20);
+        vietdanhgia.setRows(5);
+        vietdanhgia.setText("Viết đánh giá");
+        jScrollPane1.setViewportView(vietdanhgia);
 
-        jRadioButton1.setText("5 Sao");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        dg5sao.setText("5 Sao");
+        dg5sao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                dg5saoActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("4 Sao");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        dg4sao.setText("4 Sao");
+        dg4sao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                dg4saoActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setText("3 Sao");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        dg3sao.setText("3 Sao");
+        dg3sao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                dg3saoActionPerformed(evt);
             }
         });
 
-        jRadioButton4.setText("2 Sao");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        dg2sao.setText("2 Sao");
+        dg2sao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                dg2saoActionPerformed(evt);
             }
         });
 
-        jRadioButton5.setText("1 Sao");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        dg1sao.setText("1 Sao");
+        dg1sao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                dg1saoActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Đánh Giá Ngay");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        button_taodanhgiamoi.setBackground(new java.awt.Color(51, 51, 51));
+        button_taodanhgiamoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        button_taodanhgiamoi.setForeground(new java.awt.Color(255, 255, 255));
+        button_taodanhgiamoi.setText("Đánh Giá Ngay");
+        button_taodanhgiamoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                button_taodanhgiamoiActionPerformed(evt);
             }
         });
 
@@ -100,48 +101,47 @@ public class DanhGia extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 68, Short.MAX_VALUE))
+                .addGap(150, 150, 150)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel1))
+                        .addGap(68, 68, 68)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(81, 81, 81)
+                        .addComponent(dg5sao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dg4sao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dg3sao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dg2sao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dg1sao)))
+                .addGap(0, 68, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(button_taodanhgiamoi, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1))
-                .addGap(12, 12, 12)
+                    .addComponent(dg1sao)
+                    .addComponent(dg2sao)
+                    .addComponent(dg3sao)
+                    .addComponent(dg4sao)
+                    .addComponent(dg5sao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(button_taodanhgiamoi, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
 
@@ -176,29 +176,29 @@ public class DanhGia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void dg5saoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dg5saoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_dg5saoActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void dg4saoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dg4saoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_dg4saoActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void dg3saoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dg3saoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_dg3saoActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void dg2saoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dg2saoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_dg2saoActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+    private void dg1saoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dg1saoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    }//GEN-LAST:event_dg1saoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void button_taodanhgiamoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_taodanhgiamoiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_button_taodanhgiamoiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,16 +236,16 @@ public class DanhGia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton button_taodanhgiamoi;
+    private javax.swing.JRadioButton dg1sao;
+    private javax.swing.JRadioButton dg2sao;
+    private javax.swing.JRadioButton dg3sao;
+    private javax.swing.JRadioButton dg4sao;
+    private javax.swing.JRadioButton dg5sao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea vietdanhgia;
     // End of variables declaration//GEN-END:variables
 }
