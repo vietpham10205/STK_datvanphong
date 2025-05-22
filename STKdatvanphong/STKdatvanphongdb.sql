@@ -342,12 +342,13 @@ FOR EACH ROW
 DECLARE
     v_priority NUMBER;
     v_package_id NUMBER;
+    v_role VARCHAR2(20); -- Thêm khai báo cho v_role với kiểu dữ liệu phù hợp
 BEGIN
     -- Kiểm tra vai trò người dùng
     SELECT role INTO v_role
     FROM USERS
     WHERE user_id = :NEW.user_id;
-    
+
     IF v_role != 'Người cho thuê' THEN
         RAISE_APPLICATION_ERROR(-20079, 'Chỉ người cho thuê mới được đăng bài.');
     END IF;
@@ -361,13 +362,13 @@ BEGIN
           AND up.is_active = 'Y'
           AND SYSDATE BETWEEN up.start_date AND up.end_date
         FETCH FIRST 1 ROW ONLY;
-        
+
         -- Lấy priority_level từ PACKAGES
         SELECT priority_level
         INTO v_priority
         FROM PACKAGES
         WHERE package_id = v_package_id;
-        
+
         :NEW.priority := v_priority;
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
@@ -406,7 +407,7 @@ BEGIN
 END;
 /
 
--- Stored Procedure: Đăng ký người dùng
+-- Stored Procedure: Đăng ký người dùng (KHÔNG SỬ DỤNG BĂM MẬT KHẨU)
 CREATE OR REPLACE PROCEDURE register_user(
     p_username IN VARCHAR2,
     p_password IN VARCHAR2,
@@ -419,15 +420,15 @@ BEGIN
     IF p_username IS NULL OR p_password IS NULL OR p_full_name IS NULL OR p_email IS NULL OR p_role IS NULL THEN
         RAISE_APPLICATION_ERROR(-20017, 'Các trường bắt buộc không được để trống.');
     END IF;
-    
+
     IF p_role NOT IN ('Quản lý', 'Admin', 'Người cho thuê', 'Người thuê') THEN
         RAISE_APPLICATION_ERROR(-20018, 'Vai trò không hợp lệ.');
     END IF;
-    
+
     INSERT INTO USERS (username, password, full_name, email, phone_number, role)
     VALUES (
         p_username,
-        DBMS_CRYPTO.HASH(UTL_RAW.CAST_TO_RAW(p_password), DBMS_CRYPTO.HASH_SH256),
+        p_password, -- Mật khẩu được lưu trữ ở dạng văn bản thuần túy (RẤT NGUY HIỂM)nhưng làm ơn kệ mẹ nó đi vì dell có tg để làm linh tinh đâu đcm
         p_full_name,
         p_email,
         p_phone_number,
@@ -439,35 +440,6 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20019, 'Tên đăng nhập hoặc email đã tồn tại.');
     WHEN OTHERS THEN
         RAISE_APPLICATION_ERROR(-20020, 'Lỗi khi đăng ký người dùng: ' || SQLERRM);
-END;
-/
-
--- Stored Procedure: Đăng nhập
-CREATE OR REPLACE PROCEDURE login_user (
-    p_username IN USERS.username%TYPE,
-    p_password IN USERS.password%TYPE,
-    p_user_id OUT USERS.user_id%TYPE,
-    p_role OUT USERS.role%TYPE,
-    p_status OUT VARCHAR2
-) IS
-BEGIN
-    SELECT user_id, role
-    INTO p_user_id, p_role
-    FROM USERS
-    WHERE username = p_username 
-      AND password = DBMS_CRYPTO.HASH(UTL_RAW.CAST_TO_RAW(p_password), DBMS_CRYPTO.HASH_SH256)
-      AND role != 'Banned';
-
-    p_status := 'Đăng nhập thành công';
-EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        p_user_id := NULL;
-        p_role := NULL;
-        p_status := 'Sai tên đăng nhập, mật khẩu hoặc tài khoản bị khóa';
-    WHEN OTHERS THEN
-        p_user_id := NULL;
-        p_role := NULL;
-        p_status := 'Lỗi hệ thống: ' || SQLERRM;
 END;
 /
 
@@ -523,6 +495,7 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20027, 'Lỗi khi xóa người dùng: ' || SQLERRM);
 END;
 /
+--------------------------------/////////////////////// nay fix tới đây thôi
 
 -- Stored Procedure: Khóa tài khoản
 CREATE OR REPLACE PROCEDURE lock_user_account(p_user_id IN NUMBER, p_admin_id IN NUMBER) IS
