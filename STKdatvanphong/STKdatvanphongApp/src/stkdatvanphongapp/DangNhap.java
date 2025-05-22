@@ -15,6 +15,8 @@ public class DangNhap extends javax.swing.JFrame {
      */
     public DangNhap() {
         initComponents();
+        setTitle("Login");
+
          setLocationRelativeTo(null); 
          // Thêm sự kiện click cho label chuyendendkform
     chuyendendkform.addMouseListener(new java.awt.event.MouseAdapter() {

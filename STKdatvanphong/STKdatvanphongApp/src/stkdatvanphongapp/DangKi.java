@@ -15,6 +15,8 @@ public class DangKi extends javax.swing.JFrame {
      */
     public DangKi() {
         initComponents();
+        setTitle("Register");
+
         setLocationRelativeTo(null); 
          // Sự kiện click cho label điều khoản sử dụng
     dksd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
