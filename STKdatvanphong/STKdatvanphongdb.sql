@@ -149,6 +149,78 @@ CREATE INDEX idx_posts_status ON POSTS(status);
 CREATE INDEX idx_posts_priority ON POSTS(priority);
 CREATE INDEX idx_reviews_room_id ON REVIEWS(room_id);
 
+
+
+--------------------
+INSERT INTO USERS (username, password, full_name, email, phone_number, role)
+VALUES 
+('admin01', 'hashed_pwd1', 'Admin Hệ Thống', 'admin01@bizrent.vn', '0909000001', 'Admin'),
+('manager01', 'hashed_pwd2', 'Quản lý BĐS', 'manager01@bizrent.vn', '0909000002', 'Quản lý'),
+('host01', 'hashed_pwd3', 'Công ty Alpha', 'alpha@company.vn', '0909000011', 'Người cho thuê'),
+('host02', 'hashed_pwd4', 'Tòa nhà Beta', 'beta@company.vn', '0909000012', 'Người cho thuê'),
+('renter01', 'hashed_pwd5', 'Nguyễn Văn A', 'renter01@gmail.com', '0909123456', 'Người thuê');
+
+INSERT INTO ROOM_TYPES (type_name, description)
+VALUES 
+('Văn phòng chia sẻ', 'Không gian làm việc chia sẻ cho doanh nghiệp nhỏ và startup'),
+('Văn phòng riêng', 'Không gian riêng tư phù hợp với doanh nghiệp vừa và nhỏ'),
+('Tòa nhà doanh nghiệp', 'Toà nhà nhiều tầng phục vụ các doanh nghiệp thuê trụ sở'),
+('Phòng hội thảo', 'Phòng họp/hội nghị phục vụ tổ chức sự kiện doanh nghiệp');
+
+INSERT INTO LOCATIONS (location_name, address)
+VALUES 
+('Quận 1 - TP.HCM', '123 Đường Lê Lợi, Quận 1, TP.HCM'),
+('Quận 3 - TP.HCM', '456 Đường Nam Kỳ Khởi Nghĩa, Quận 3, TP.HCM'),
+('Quận Thanh Xuân - Hà Nội', '789 Đường Nguyễn Trãi, Thanh Xuân, Hà Nội');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES 
+('VP Chia sẻ Alpha 101', 1, 1, 50, 800000, 10, 'Không gian chia sẻ có bàn làm việc, máy lạnh, wifi tốc độ cao'),
+('VP Riêng Alpha 201', 2, 1, 120, 2000000, 25, 'Phòng làm việc riêng có phòng họp nhỏ, máy lạnh, bảo vệ 24/7'),
+('Tòa nhà Beta Tower', 3, 2, 800, 10000000, 150, 'Tòa nhà 5 tầng, có thang máy, bãi xe, lễ tân, bảo vệ'),
+('Phòng hội thảo Beta Hall', 4, 2, 100, 3000000, 50, 'Phòng họp với máy chiếu, hệ thống âm thanh, sân khấu mini'),
+('VP Chia sẻ Alpha 102', 1, 3, 45, 700000, 8, 'Không gian làm việc yên tĩnh, phù hợp nhóm nhỏ');
+
+INSERT INTO PACKAGES (package_name, price, duration_days, priority_level)
+VALUES 
+('Gói Cơ bản', 0, 7, 0),
+('Gói Bạc', 300000, 15, 1),
+('Gói Vàng', 700000, 30, 2),
+('Gói Kim Cương', 1500000, 60, 3);
+
+-- Gán gói Vàng cho host01 (active)
+INSERT INTO USER_PACKAGES (user_id, package_id, start_date)
+VALUES (3, 3, SYSDATE - 5); -- 25 ngày còn lại
+
+-- Gán gói Kim Cương cho host02
+INSERT INTO USER_PACKAGES (user_id, package_id, start_date)
+VALUES (4, 4, SYSDATE - 10); -- còn 50 ngày
+
+
+-- Bài đăng từ host01
+INSERT INTO POSTS (user_id, room_id, package_id, title, content, status)
+VALUES 
+(3, 1, 3, 'Cho thuê văn phòng chia sẻ Quận 1', 'Không gian làm việc hiện đại, trung tâm, tiện nghi đầy đủ.', 'Đã duyệt'),
+(3, 2, 3, 'VP riêng rộng rãi, tiện nghi Quận 1', 'Văn phòng phù hợp nhóm 20-25 người, có lễ tân và bảo vệ.', 'Đã duyệt');
+
+-- Bài đăng từ host02
+INSERT INTO POSTS (user_id, room_id, package_id, title, content, status)
+VALUES 
+(4, 3, 4, 'Tòa nhà cho thuê trọn gói tại Quận 3', 'Tòa nhà 5 tầng, thang máy, chỗ đậu xe riêng, an ninh 24/7.', 'Đã duyệt'),
+(4, 4, 4, 'Phòng hội thảo chuẩn doanh nghiệp', 'Phù hợp tổ chức hội nghị, đào tạo, hội thảo với đầy đủ thiết bị.', 'Đã duyệt');
+
+INSERT INTO BOOKINGS (user_id, room_id, check_in_date, check_out_date, total_price, guest_count, booking_status)
+VALUES 
+(5, 1, TO_DATE('2025-06-01', 'YYYY-MM-DD'), TO_DATE('2025-06-05', 'YYYY-MM-DD'), 3200000, 5, 'Đã xác nhận'),
+(5, 4, TO_DATE('2025-06-10', 'YYYY-MM-DD'), TO_DATE('2025-06-10', 'YYYY-MM-DD'), 3000000, 40, 'Đã xác nhận');
+
+INSERT INTO REVIEWS (user_id, room_id, rating, review_comment)
+VALUES 
+(5, 1, 5, 'Không gian làm việc tốt, vị trí trung tâm, rất hài lòng.'),
+(5, 4, 4, 'Phòng hội thảo hiện đại, chỉ hơi thiếu chỗ gửi xe.');
+
+
+--------------------
 -- Trigger 1: Tự động cập nhật end_date trong USER_PACKAGES
 CREATE OR REPLACE TRIGGER set_user_package_dates
 BEFORE INSERT OR UPDATE ON USER_PACKAGES
