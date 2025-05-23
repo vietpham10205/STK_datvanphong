@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package stkdatvanphongapp;
-
+import java.sql.*;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 /**
  *
  * @author admin
@@ -68,6 +72,12 @@ public class DangNhap extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Mật Khẩu");
+
+        o_nhap_mk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                o_nhap_mkActionPerformed(evt);
+            }
+        });
 
         nut_dang_nhap.setBackground(new java.awt.Color(51, 51, 51));
         nut_dang_nhap.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -190,7 +200,30 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void nut_dang_nhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nut_dang_nhapActionPerformed
         // TODO add your handling code here:
+       String email = o_nhap_email.getText();
+        String pass = o_nhap_mk.getText();
+        try (Connection conn = OracleConnection.getConnection()) {
+            String sql = "SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, pass);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
+                new TrangChu().setVisible(true);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Đăng nhập không thành công!");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lỗi kết nối CSDL!");
+        }
     }//GEN-LAST:event_nut_dang_nhapActionPerformed
+
+    private void o_nhap_mkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_nhap_mkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_o_nhap_mkActionPerformed
 
     /**
      * @param args the command line arguments

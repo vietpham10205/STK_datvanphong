@@ -6,6 +6,10 @@ package stkdatvanphongapp;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.*;
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 /**
  *
  * @author admin
@@ -20,6 +24,11 @@ public class STKdatvanphongApp {
         // TODO code application logic here
             
       
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            new DangKi().setVisible(true);
+        }
+    });
 
   
     }
