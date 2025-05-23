@@ -495,7 +495,6 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20027, 'Lỗi khi xóa người dùng: ' || SQLERRM);
 END;
 /
---------------------------------/////////////////////// nay fix tới đây thôi
 
 -- Stored Procedure: Khóa tài khoản
 CREATE OR REPLACE PROCEDURE lock_user_account(p_user_id IN NUMBER, p_admin_id IN NUMBER) IS
@@ -908,7 +907,7 @@ EXCEPTION
 END;
 /
 
--- Stored Procedure: Thay đổi mật khẩu
+-- Stored Procedure: Thay đổi mật khẩu (KHÔNG SỬ DỤNG BĂM MẬT KHẨU)
 CREATE OR REPLACE PROCEDURE change_password(
     p_user_id IN NUMBER,
     p_old_password IN VARCHAR2,
@@ -919,23 +918,23 @@ BEGIN
     IF p_old_password IS NULL OR p_new_password IS NULL THEN
         RAISE_APPLICATION_ERROR(-20073, 'Mật khẩu không được để trống.');
     END IF;
-    
-    SELECT password INTO v_current_password 
-    FROM USERS 
+
+    SELECT password INTO v_current_password
+    FROM USERS
     WHERE user_id = p_user_id;
-    
-    IF v_current_password != DBMS_CRYPTO.HASH(UTL_RAW.CAST_TO_RAW(p_old_password), DBMS_CRYPTO.HASH_SH256) THEN
+
+    IF v_current_password != p_old_password THEN
         RAISE_APPLICATION_ERROR(-20074, 'Mật khẩu cũ không đúng.');
     END IF;
-    
-    UPDATE USERS 
-    SET password = DBMS_CRYPTO.HASH(UTL_RAW.CAST_TO_RAW(p_new_password), DBMS_CRYPTO.HASH_SH256)
+
+    UPDATE USERS
+    SET password = p_new_password -- Mật khẩu mới được lưu trữ ở dạng văn bản thuần túy (RẤT NGUY HIỂM)
     WHERE user_id = p_user_id;
-    
+
     IF SQL%ROWCOUNT = 0 THEN
         RAISE_APPLICATION_ERROR(-20075, 'Không tìm thấy người dùng.');
     END IF;
-    
+
     COMMIT;
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
@@ -992,32 +991,37 @@ CREATE OR REPLACE PROCEDURE purchase_package(
     p_package_id IN NUMBER
 ) IS
     v_role USERS.role%TYPE;
+    v_package_count NUMBER; -- Thêm biến để đếm số lượng gói dịch vụ
 BEGIN
     -- Kiểm tra vai trò người dùng
     SELECT role INTO v_role
     FROM USERS
     WHERE user_id = p_user_id;
-    
+
     IF v_role != 'Người cho thuê' THEN
         RAISE_APPLICATION_ERROR(-20083, 'Chỉ người cho thuê mới được mua gói dịch vụ.');
     END IF;
-    
+
     -- Kiểm tra gói dịch vụ có tồn tại
-    IF NOT EXISTS (SELECT 1 FROM PACKAGES WHERE package_id = p_package_id) THEN
+    SELECT COUNT(*)
+    INTO v_package_count
+    FROM PACKAGES
+    WHERE package_id = p_package_id;
+
+    IF v_package_count = 0 THEN
         RAISE_APPLICATION_ERROR(-20084, 'Gói dịch vụ không tồn tại.');
     END IF;
-    
+
     -- Thêm bản ghi vào USER_PACKAGES
     INSERT INTO USER_PACKAGES (user_id, package_id, start_date)
     VALUES (p_user_id, p_package_id, SYSDATE);
-    
+
     COMMIT;
 EXCEPTION
     WHEN OTHERS THEN
         RAISE_APPLICATION_ERROR(-20085, 'Lỗi khi mua gói dịch vụ: ' || SQLERRM);
 END;
 /
-
 
 
 
