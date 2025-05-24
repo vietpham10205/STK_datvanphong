@@ -212,6 +212,96 @@ VALUES ('Phòng hội thảo Beta Hall', 4, 2, 100, 3000000, 50, 'Phòng họp v
 INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description) 
 VALUES ('VP Chia sẻ Alpha 102', 1, 3, 45, 700000, 8, 'Không gian làm việc yên tĩnh, phù hợp nhóm nhỏ');
 
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Chia sẻ Gamma 103', 1, 2, 55, 850000, 12, 'Không gian chia sẻ hiện đại, nhiều ánh sáng, đầy đủ tiện nghi');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Riêng Gamma 202', 2, 2, 110, 1900000, 22, 'Văn phòng yên tĩnh, có phòng tiếp khách, dịch vụ vệ sinh');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Tòa nhà Delta Complex', 3, 3, 900, 12000000, 160, 'Tòa nhà mới xây, có sảnh lễ tân, bảo vệ 24/7, hầm để xe');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Phòng hội thảo Delta Hall', 4, 3, 95, 2800000, 45, 'Phòng họp chuyên nghiệp, trang bị màn chiếu lớn, hệ thống âm thanh chất lượng cao');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Chia sẻ Epsilon 104', 1, 1, 60, 900000, 10, 'Không gian mở, phù hợp startup, có pantry chung');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Riêng Epsilon 203', 2, 3, 130, 2100000, 26, 'Văn phòng riêng biệt, có cửa sổ lớn, view thành phố');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Tòa nhà Omega Center', 3, 1, 1000, 15000000, 200, 'Tòa nhà trung tâm, giao thông thuận tiện, dịch vụ cao cấp');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Phòng hội thảo Omega Hall', 4, 1, 120, 3500000, 60, 'Phòng họp cao cấp, điều hòa trung tâm, thiết bị trình chiếu hiện đại');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Chia sẻ Zeta 105', 1, 2, 48, 750000, 8, 'Văn phòng chia sẻ cho freelancer, yên tĩnh, nhiều tiện ích');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Riêng Zeta 204', 2, 2, 115, 1950000, 24, 'Không gian làm việc độc lập, có máy lạnh, bãi đỗ xe');
+------
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Chia sẻ Sigma 106', 1, 1, 52, 800000, 9, 'Không gian mở, nhiều cây xanh, gần trung tâm');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Riêng Sigma 205', 2, 1, 125, 2050000, 25, 'Phòng yên tĩnh, đầy đủ tiện nghi, có tủ hồ sơ riêng');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Tòa nhà Nova Plaza', 3, 2, 850, 9500000, 140, 'Tòa nhà chuẩn hạng B+, bảo vệ, lễ tân, vệ sinh');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Phòng hội thảo Nova Hall', 4, 2, 105, 3100000, 48, 'Phòng hội thảo máy lạnh trung tâm, có khu tiếp khách');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Chia sẻ Theta 107', 1, 3, 58, 820000, 10, 'Không gian sáng tạo, bàn nhóm, có tủ locker riêng');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Riêng Theta 206', 2, 3, 135, 2200000, 28, 'Văn phòng 2 mặt thoáng, view đẹp, yên tĩnh');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Tòa nhà Sunrise Center', 3, 3, 920, 11000000, 170, 'Tòa nhà mới, hệ thống PCCC đạt chuẩn, thang máy nhanh');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Phòng hội thảo Sunrise Hall', 4, 3, 115, 3300000, 55, 'Trang bị hệ thống âm thanh chất lượng cao, có podium');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Chia sẻ Delta 108', 1, 2, 50, 750000, 8, 'Không gian yên tĩnh, bàn làm việc cá nhân, wifi mạnh');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Riêng Delta 207', 2, 2, 140, 2300000, 30, 'Văn phòng rộng, tiện nghi, có phòng họp mini');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Tòa nhà Central Hub', 3, 1, 1000, 13000000, 200, 'Toà nhà tại trung tâm TP, thuận tiện di chuyển');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Phòng hội thảo Central Hall', 4, 1, 130, 4000000, 70, 'Phòng hội thảo cao cấp, âm thanh ánh sáng chuyên nghiệp');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Chia sẻ Lambda 109', 1, 3, 47, 720000, 7, 'Không gian thoáng, có bếp mini và khu thư giãn');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Riêng Lambda 208', 2, 3, 115, 2000000, 22, 'Phòng riêng biệt, nội thất sẵn sàng, vào làm ngay');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Tòa nhà Zen Plaza', 3, 2, 890, 10200000, 155, 'Vị trí đắc địa, gần trung tâm thương mại, an ninh 24/7');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Phòng hội thảo Zen Hall', 4, 2, 98, 2900000, 44, 'Trang bị micro không dây, màn hình LED lớn');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Chia sẻ Kappa 110', 1, 1, 60, 850000, 9, 'Không gian startup, năng động, hỗ trợ in ấn miễn phí');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('VP Riêng Kappa 209', 2, 1, 120, 1980000, 20, 'Thiết kế hiện đại, có phòng họp riêng');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Tòa nhà Future Tech', 3, 3, 950, 11200000, 180, 'Tòa nhà cho doanh nghiệp công nghệ, có không gian workshop');
+
+INSERT INTO ROOMS (room_name, room_type_id, location_id, area, price_per_day, capacity, description)
+VALUES ('Phòng hội thảo Future Hall', 4, 3, 110, 3200000, 50, 'Đầy đủ thiết bị trình chiếu, bàn ghế di động, tiện nghi');
+
 -- PACKAGES
 INSERT INTO PACKAGES (package_name, price, duration_days, priority_level) VALUES ('Gói Cơ bản', 0, 7, 0);
 INSERT INTO PACKAGES (package_name, price, duration_days, priority_level) VALUES ('Gói Bạc', 300000, 15, 1);
