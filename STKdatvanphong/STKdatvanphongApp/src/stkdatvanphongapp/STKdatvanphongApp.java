@@ -24,9 +24,10 @@ public class STKdatvanphongApp {
         // TODO code application logic here
             
       
+    /////////////////chay dang nhap
     java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
-            new DangKi().setVisible(true);
+            new DangNhap().setVisible(true); // Mở form đăng nhập đầu tiên
         }
     });
 
