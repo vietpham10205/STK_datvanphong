@@ -4,11 +4,15 @@
  */
 package stkdatvanphongapp;
 
+import java.util.List;
+import javax.swing.JPanel;
+
 /**
  *
  * @author nnhoa
  */
 public class TrangchuNguoiThue extends javax.swing.JFrame {
+    private RoomDAO roomDAO = new RoomDAO();
 
     /**
      * Creates new form TrangChu
@@ -17,8 +21,22 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null); 
         setTitle("STKdatvanphong");
-         setTitle("STKdatvanphong");
-    jLabel3.setText(CurrentUser.username); // Hiển thị tên user hiện tại
+        jLabel3.setText(CurrentUser.username); // Hiển thị tên user hiện tại
+        
+    loadRoomsToPanel(); // <-- Thêm dòng này để load danh sách phòng khi mở form
+    
+    }
+
+    private void loadRoomsToPanel() {
+    List<Room> rooms = roomDAO.getAllRooms();
+    roomCardsInnerPanel.removeAll(); // roomCardsInnerPanel là JPanel bên trong JScrollPane
+
+    for (Room room : rooms) {
+        RoomCard card = new RoomCard(room);
+        roomCardsInnerPanel.add(card);
+    }
+    roomCardsInnerPanel.revalidate();
+    roomCardsInnerPanel.repaint();
     }
 
     /**
@@ -49,6 +67,8 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
+        roomCardsPanel = new javax.swing.JScrollPane();
+        roomCardsInnerPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -210,16 +230,12 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
                         .addGap(20, 20, 20))))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 993, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
-        );
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
+
+        roomCardsInnerPanel.setLayout(new java.awt.GridLayout(0, 5, 10, 10));
+        roomCardsPanel.setViewportView(roomCardsInnerPanel);
+
+        jPanel3.add(roomCardsPanel);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -242,7 +258,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -351,6 +367,8 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel roomCardsInnerPanel;
+    private javax.swing.JScrollPane roomCardsPanel;
     // End of variables declaration//GEN-END:variables
 }
 
