@@ -9,6 +9,7 @@ package stkdatvanphongapp;
  * @author admin
  */
 public class CurrentUser {
+    public static int id;         // Thêm dòng này
     public static String email;
     public static String username;
     public static String role;

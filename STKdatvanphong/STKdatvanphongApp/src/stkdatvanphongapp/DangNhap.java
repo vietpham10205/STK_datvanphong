@@ -5,9 +5,6 @@
 package stkdatvanphongapp;
 import java.sql.*;
 import javax.swing.JOptionPane;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 /**
  *
  * @author admin
@@ -203,7 +200,7 @@ public class DangNhap extends javax.swing.JFrame {
        String email = o_nhap_email.getText();
     String pass = o_nhap_mk.getText();
     try (Connection conn = OracleConnection.getConnection()) {
-        String sql = "SELECT EMAIL, USERNAME, ROLE FROM USERS WHERE EMAIL = ? AND PASSWORD = ?";
+        String sql = "SELECT USER_ID, EMAIL, USERNAME, ROLE FROM USERS WHERE EMAIL = ? AND PASSWORD = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, email);
         ps.setString(2, pass);
@@ -211,6 +208,7 @@ public class DangNhap extends javax.swing.JFrame {
         if (rs.next()) {
             
                 //////////// lưu thông tin user hiện tại
+    CurrentUser.id = rs.getInt("USER_ID");
     CurrentUser.email = rs.getString("EMAIL");
     CurrentUser.username = rs.getString("USERNAME");
     CurrentUser.role = rs.getString("ROLE");
