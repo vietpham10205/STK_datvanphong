@@ -347,6 +347,13 @@ private void loadRoomsToPanel() {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        if (jPanel3.getComponentCount() < 3) { // hoặc kiểm tra bằng tên card
+        BaiDaDang baiDaDangPanel = new BaiDaDang();
+        jPanel3.add(baiDaDangPanel, "cardBaiDaDang");
+    }
+    CardLayout cl = (CardLayout) (jPanel3.getLayout());
+    cl.show(jPanel3, "cardBaiDaDang");
+        //
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

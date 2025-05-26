@@ -129,9 +129,9 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
+        bookedRoomsPanel = new javax.swing.JPanel();
         roomCardsPanel = new javax.swing.JScrollPane();
         roomCardsInnerPanel = new javax.swing.JPanel();
-        bookedRoomsPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -232,7 +232,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
                 .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton9))
@@ -295,13 +295,13 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.CardLayout());
 
+        bookedRoomsPanel.setLayout(new java.awt.GridLayout(0, 1, 15, 15));
+        jPanel3.add(bookedRoomsPanel, "card3");
+
         roomCardsInnerPanel.setLayout(new java.awt.GridLayout(0, 5, 10, 10));
         roomCardsPanel.setViewportView(roomCardsInnerPanel);
 
         jPanel3.add(roomCardsPanel, "card2");
-
-        bookedRoomsPanel.setLayout(new java.awt.GridLayout(0, 1, 15, 15));
-        jPanel3.add(bookedRoomsPanel, "card3");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -337,7 +337,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
         );
 
         pack();
