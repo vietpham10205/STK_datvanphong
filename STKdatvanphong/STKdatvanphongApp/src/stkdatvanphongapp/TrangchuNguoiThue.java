@@ -371,6 +371,23 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+     int result = javax.swing.JOptionPane.showConfirmDialog(
+        this,
+        "Bạn có chắc chắn muốn đăng xuất không?",
+        "Xác nhận đăng xuất",
+        javax.swing.JOptionPane.YES_NO_OPTION
+    );
+    if (result == javax.swing.JOptionPane.YES_OPTION) {
+        // Đặt lại trạng thái CurrentUser
+        CurrentUser.id = 0;
+        CurrentUser.email = null;
+        CurrentUser.username = null;
+        CurrentUser.role = null;
+        // Mở lại form đăng nhập
+        new DangNhap().setVisible(true);
+        // Đóng form hiện tại
+        this.dispose();
+    }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
