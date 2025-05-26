@@ -6,6 +6,13 @@ package stkdatvanphongapp;
 
 import java.util.List;
 import javax.swing.JPanel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.CardLayout;
 
 /**
  *
@@ -22,7 +29,9 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         setLocationRelativeTo(null); 
         setTitle("STKdatvanphong");
         jLabel3.setText(CurrentUser.username); // Hiển thị tên user hiện tại
-        
+        // Đặt layout cho bookedRoomsPanel (nếu bạn đã kéo thả panel này trong GUI)
+    bookedRoomsPanel.setLayout(new javax.swing.BoxLayout(bookedRoomsPanel, javax.swing.BoxLayout.Y_AXIS));
+    
     loadRoomsToPanel(); // <-- Thêm dòng này để load danh sách phòng khi mở form
     
     }
@@ -39,6 +48,59 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     roomCardsInnerPanel.repaint();
     }
 
+    private void openDanhGiaForm(int bookingId, String roomName) {
+    // Tạo một instance của form DanhGia
+    DanhGia danhGiaForm = new DanhGia();
+    danhGiaForm.setTitle("Đánh giá phòng: " + roomName); // Đặt tiêu đề form
+    danhGiaForm.setBookingId(bookingId); // Truyền ID booking vào form (nếu cần)
+    danhGiaForm.setVisible(true); // Hiển thị forms
+}
+     private void loadBookedRoomsPanel() {
+        bookedRoomsPanel.removeAll();
+    String sql = "SELECT r.ROOM_NAME, b.TOTAL_PRICE, b.CHECK_IN_DATE, b.CHECK_OUT_DATE, b.BOOKING_ID " +
+                 "FROM BOOKINGS b " +
+                 "JOIN ROOMS r ON b.ROOM_ID = r.ROOM_ID " +
+                 "JOIN USERS u ON b.USER_ID = u.USER_ID " +
+                 "WHERE u.EMAIL = ? AND b.BOOKING_STATUS = 'Đã xác nhận'";
+    try (Connection conn = OracleConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setString(1, CurrentUser.email);
+        ResultSet rs = ps.executeQuery();
+        boolean hasBooking = false;
+        while (rs.next()) {
+            hasBooking = true;
+            String roomName = rs.getString("ROOM_NAME");
+            double totalPrice = rs.getDouble("TOTAL_PRICE");
+            java.sql.Date checkIn = rs.getDate("CHECK_IN_DATE");
+            java.sql.Date checkOut = rs.getDate("CHECK_OUT_DATE");
+            int bookingId = rs.getInt("BOOKING_ID"); // Lấy ID của booking
+
+            JPanel card = new JPanel();
+            card.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.GRAY, 1));
+            card.setLayout(new java.awt.GridLayout(4, 1));
+            card.add(new javax.swing.JLabel("Phòng: " + roomName));
+            card.add(new javax.swing.JLabel("Tổng tiền: " + String.format("%,.0f", totalPrice) + " VND"));
+            card.add(new javax.swing.JLabel("Nhận phòng: " + checkIn));
+            card.add(new javax.swing.JLabel("Trả phòng: " + checkOut));
+
+            // Thêm sự kiện click vào card
+            card.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    openDanhGiaForm(bookingId, roomName); // Mở form DanhGia
+                }
+            });
+
+            bookedRoomsPanel.add(card);
+        }
+        if (!hasBooking) {
+            bookedRoomsPanel.add(new javax.swing.JLabel("Bạn chưa có phòng nào đã đặt!"));
+        }
+    } catch (Exception ex) {
+        bookedRoomsPanel.add(new javax.swing.JLabel("Lỗi khi tải danh sách phòng đã đặt!"));
+    }
+    bookedRoomsPanel.revalidate();
+    bookedRoomsPanel.repaint();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +116,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        bookmarkbutton = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -69,6 +131,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         roomCardsPanel = new javax.swing.JScrollPane();
         roomCardsInnerPanel = new javax.swing.JPanel();
+        bookedRoomsPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,11 +166,11 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(85, 107, 47));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bookmark_48px.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        bookmarkbutton.setBackground(new java.awt.Color(85, 107, 47));
+        bookmarkbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bookmark_48px.png"))); // NOI18N
+        bookmarkbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                bookmarkbuttonActionPerformed(evt);
             }
         });
 
@@ -142,7 +205,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bookmarkbutton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,7 +227,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
+                .addComponent(bookmarkbutton)
                 .addGap(67, 67, 67)
                 .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -230,12 +293,15 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
                         .addGap(20, 20, 20))))
         );
 
-        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel3.setLayout(new java.awt.CardLayout());
 
         roomCardsInnerPanel.setLayout(new java.awt.GridLayout(0, 5, 10, 10));
         roomCardsPanel.setViewportView(roomCardsInnerPanel);
 
-        jPanel3.add(roomCardsPanel);
+        jPanel3.add(roomCardsPanel, "card2");
+
+        bookedRoomsPanel.setLayout(new java.awt.GridLayout(0, 1, 15, 15));
+        jPanel3.add(bookedRoomsPanel, "card3");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -279,6 +345,8 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+         CardLayout cl = (CardLayout) (jPanel3.getLayout()); // Ép kiểu rõ ràng
+    cl.show(jPanel3, "card2"); // Hiển thị roomCardsPanel
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -289,9 +357,13 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void bookmarkbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookmarkbuttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+         loadBookedRoomsPanel(); // Gọi hàm để tải dữ liệu vào bookedRoomsPanel
+    CardLayout cl = (CardLayout) (jPanel3.getLayout()); // Ép kiểu rõ ràng
+    cl.show(jPanel3, "card3"); // Hiển thị bookedRoomsPanel
+         
+    }//GEN-LAST:event_bookmarkbuttonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -348,11 +420,12 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bookedRoomsPanel;
+    private javax.swing.JButton bookmarkbutton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
