@@ -7,7 +7,6 @@
 Dịch vụ gửi thông báo (Notification Service): email/SMS xác nhận đặt phòng, nhắc nhở lịch đặt, thông báo khuyến mãi.
 Dịch vụ đánh giá và phản hồi khách hàng: Khách hàng có thể đánh giá, bình luận về dịch vụ phòng, thái độ của chủ cho thuê,…
 Dịch vụ tìm kiếm và gợi ý phòng:Tìm kiếm theo: Loại phòng, giá, vị trí, tiện nghi; gợi ý phòng phù hợp dựa trên lịch sử đặt phòng.
-Mẫu: https://www.regus.com/vi-vn
 Các Đối Tượng Sử dụng
 Người thuê : Người có nhu cầu đặt phòng.
 Người cho thuê : Người chịu trách nhiệm quản lý, phê duyệt hoặc cung cấp phòng.
