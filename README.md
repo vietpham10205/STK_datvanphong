@@ -1,44 +1,84 @@
 # STK_datvanphong
 
-#STILLTHINKING
-#Tên chung: Quản lí hệ thống đặt phòng dịch vụ cho doanh nghiệp (STKdatvanphong)
-#Quản lí đặt phòng: Quản lý danh sách phòng,loại phòng, tình trạng phòng (còn trống, đã đặt, đang sử dụng, bảo trì)
-#Xác minh, phân quyền và quản lí các đối tượng người dùng: Người đặt phòng, Người cho thuê phòng, Admin…
-Dịch vụ gửi thông báo (Notification Service): email/SMS xác nhận đặt phòng, nhắc nhở lịch đặt, thông báo khuyến mãi.
-Dịch vụ đánh giá và phản hồi khách hàng: Khách hàng có thể đánh giá, bình luận về dịch vụ phòng, thái độ của chủ cho thuê,…
-Dịch vụ tìm kiếm và gợi ý phòng:Tìm kiếm theo: Loại phòng, giá, vị trí, tiện nghi; gợi ý phòng phù hợp dựa trên lịch sử đặt phòng.
-Mẫu: https://www.regus.com/vi-vn
-Các Đối Tượng Sử dụng
-Người thuê : Người có nhu cầu đặt phòng.
-Người cho thuê : Người chịu trách nhiệm quản lý, phê duyệt hoặc cung cấp phòng.
-Admin: Quản lí bài đăng, Kiểm duyệt thông tin bài đăng
-Chi tiết:
-Chức năng chính:
-Cho phép người cho thuê :
-đăng nhập tài khoản, ( Phân cấp tài khoản dựa trên mức phí đóng)
-đăng kí phòng
-kết nối trực tiếp với người thuê, .
-Cập nhật thông tin phòng (tên phòng, sức chứa, trạng thái).
-Xuất báo cáo thống kê sử dụng phòng.
-Cho phép người thuê:
-Tìm phòng dựa trên: Loại phòng, Vị trí , giá cả(niêm yết).
-Xem thông tin phòng (diện tích, nội thất, vật dụng, hình ảnh,…)
-Đặt chuyến tham quan.
-Kết nối, thỏa thuận với người cho thuê(trong trường hợp có khả năng giảm giá)
-Chatbox để kết nối với nhân viên hỗ trợ
-Tạo tài khoản (Optional)
-Admin:
-Phê duyệt bài đăng
-gửi thông báo
-xóa/ cập nhật thông tin người dùng
-Quy Trình Chi Tiết: ( xem lại quy trình ) ( quy trình tổng quát cho thuê và đánh giá chất lượng ) Tổng quát
-Người cho thuê: Đăng kí tài khoản, Đăng kí phòng
-Admin: Xem thông tin bài đăng và duyệt
-Gửi thông báo xác nhận cho người cho thuê
-Người thuê: tìm phòng, để lại thông tin liên lạc, chọn thời gian tham quan
-Nhận thông tin từ bên cần thuê, liên lạc và xác nhận thời gian tham quan với bên thuê
-Thỏa thuận và xác nhận cho thuê
-Hủy hoặc xác nhận cho thuê trên hệ thống
-Người thuê đánh giá và rating trên hệ thống
-Admin cập nhật đánh giá lên web
-*/
+## 🚧 STILL THINKING
+
+### 📌 Tên chung
+**Quản lí hệ thống đặt phòng dịch vụ cho doanh nghiệp (STKdatvanphong)**
+
+---
+
+## 🛠️ Chức năng chính
+
+### 1. Quản lí đặt phòng
+- Quản lý danh sách phòng: loại phòng, tình trạng phòng (còn trống, đã đặt, đang sử dụng, bảo trì).
+
+### 2. Xác minh, phân quyền và quản lý người dùng
+- Các đối tượng: 
+  - Người đặt phòng
+  - Người cho thuê phòng
+  - Admin
+
+### 3. Dịch vụ thông báo (Notification Service)
+- Gửi email/SMS xác nhận đặt phòng.
+- Nhắc nhở lịch đặt.
+- Thông báo khuyến mãi.
+
+### 4. Đánh giá & phản hồi khách hàng
+- Khách hàng có thể đánh giá, bình luận về:
+  - Dịch vụ phòng
+  - Thái độ chủ cho thuê
+
+### 5. Tìm kiếm & gợi ý phòng
+- Theo loại phòng, giá, vị trí, tiện nghi.
+- Gợi ý dựa trên lịch sử đặt phòng.
+
+---
+
+## 👥 Đối tượng sử dụng
+
+### 🔹 Người thuê
+- Có nhu cầu đặt phòng.
+- Chức năng:
+  - Tìm phòng (theo loại, vị trí, giá niêm yết)
+  - Xem chi tiết (diện tích, nội thất, tiện ích, ảnh…)
+  - Đặt chuyến tham quan
+  - Kết nối và thỏa thuận với người cho thuê
+  - Chat với nhân viên hỗ trợ
+  - Tạo tài khoản (tùy chọn)
+  - Đánh giá & chấm điểm phòng
+
+### 🔹 Người cho thuê
+- Quản lý, phê duyệt và cung cấp phòng.
+- Chức năng:
+  - Đăng nhập
+  - Đăng ký phòng
+  - Cập nhật thông tin phòng
+  - Kết nối với người thuê
+  - Xem thống kê sử dụng phòng
+
+### 🔹 Admin
+- Quản trị hệ thống.
+- Chức năng:
+  - Phân quyền tài khoản
+  - Duyệt bài đăng
+  - Gửi thông báo
+  - Xóa hoặc cập nhật thông tin người dùng
+  - Cập nhật đánh giá lên website
+
+---
+
+## 🔄 Quy trình chi tiết
+
+1. **Người cho thuê**: Đăng ký tài khoản → Đăng phòng
+2. **Admin**: Kiểm duyệt bài đăng → Gửi thông báo xác nhận
+3. **Người thuê**:
+   - Tìm và chọn phòng
+   - Gửi thông tin liên hệ, chọn thời gian tham quan
+4. **Người cho thuê**: Liên hệ xác nhận thời gian
+5. **Thỏa thuận cho thuê**: Hai bên xác nhận hoặc hủy
+6. **Người thuê**: Đánh giá và rating trên hệ thống
+7. **Admin**: Cập nhật đánh giá lên web
+
+---
+
+> ✅ Mục tiêu: Cung cấp một nền tảng đặt phòng chuyên nghiệp, tiện lợi, minh bạch và hỗ trợ đánh giá chất lượng dịch vụ.

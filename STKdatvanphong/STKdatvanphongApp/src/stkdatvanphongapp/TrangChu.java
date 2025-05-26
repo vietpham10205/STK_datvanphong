@@ -27,12 +27,14 @@ private RoomDAO roomDAO = new RoomDAO();
         initComponents();
         setLocationRelativeTo(null); 
         setTitle("STKdatvanphong");
-         setTitle("STKdatvanphong");
+        
     jLabel3.setText(CurrentUser.username); // Hiển thị tên user hiện tại
-    
+    bookedRoomsPanel.setLayout(new javax.swing.BoxLayout(bookedRoomsPanel, javax.swing.BoxLayout.Y_AXIS));
     loadRoomsToPanel(); // <-- Thêm dòng này để load danh sách phòng khi mở form
+    
+    
     }
-private void loadRoomsToPanel() {
+      private void loadRoomsToPanel() {
     List<Room> rooms = roomDAO.getAllRooms();
     roomCardsInnerPanel.removeAll(); // roomCardsInnerPanel là JPanel bên trong JScrollPane
 
@@ -43,43 +45,59 @@ private void loadRoomsToPanel() {
     roomCardsInnerPanel.revalidate();
     roomCardsInnerPanel.repaint();
     }
-
-
-      private void loadBookedRoomsPanel() {
+      
+  private void openDanhGiaForm(int bookingId, String roomName) {
+    // Tạo một instance của form DanhGia
+    DanhGia danhGiaForm = new DanhGia();
+    danhGiaForm.setTitle("Đánh giá phòng: " + roomName); // Đặt tiêu đề form
+    danhGiaForm.setBookingId(bookingId); // Truyền ID booking vào form (nếu cần)
+    danhGiaForm.setVisible(true); // Hiển thị forms
+}
+     private void loadBookedRoomsPanel() {
         bookedRoomsPanel.removeAll();
-        String sql = "SELECT r.ROOM_NAME, b.TOTAL_PRICE, b.CHECK_IN_DATE, b.CHECK_OUT_DATE " +
-                     "FROM BOOKINGS b " +
-                     "JOIN ROOMS r ON b.ROOM_ID = r.ROOM_ID " +
-                     "JOIN USERS u ON b.USER_ID = u.USER_ID " +
-                     "WHERE u.EMAIL = ? AND b.BOOKING_STATUS = 'Đã xác nhận'";
-        try (Connection conn = OracleConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, CurrentUser.email);
-            ResultSet rs = ps.executeQuery();
-            boolean hasBooking = false;
-            while (rs.next()) {
-                hasBooking = true;
-                String roomName = rs.getString("ROOM_NAME");
-                double totalPrice = rs.getDouble("TOTAL_PRICE");
-                java.sql.Date checkIn = rs.getDate("CHECK_IN_DATE");
-                java.sql.Date checkOut = rs.getDate("CHECK_OUT_DATE");
-                JPanel card = new JPanel();
-                card.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.GRAY, 1));
-                card.setLayout(new java.awt.GridLayout(4, 1));
-                card.add(new javax.swing.JLabel("Phòng: " + roomName));
-                card.add(new javax.swing.JLabel("Tổng tiền: " + String.format("%,.0f", totalPrice) + " VND"));
-                card.add(new javax.swing.JLabel("Nhận phòng: " + checkIn));
-                card.add(new javax.swing.JLabel("Trả phòng: " + checkOut));
-                bookedRoomsPanel.add(card);
-            }
-            if (!hasBooking) {
-                bookedRoomsPanel.add(new javax.swing.JLabel("Bạn chưa có phòng nào đã đặt!"));
-            }
-        } catch (Exception ex) {
-            bookedRoomsPanel.add(new javax.swing.JLabel("Lỗi khi tải danh sách phòng đã đặt!"));
+    String sql = "SELECT r.ROOM_NAME, b.TOTAL_PRICE, b.CHECK_IN_DATE, b.CHECK_OUT_DATE, b.BOOKING_ID " +
+                 "FROM BOOKINGS b " +
+                 "JOIN ROOMS r ON b.ROOM_ID = r.ROOM_ID " +
+                 "JOIN USERS u ON b.USER_ID = u.USER_ID " +
+                 "WHERE u.EMAIL = ? AND b.BOOKING_STATUS = 'Đã xác nhận'";
+    try (Connection conn = OracleConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setString(1, CurrentUser.email);
+        ResultSet rs = ps.executeQuery();
+        boolean hasBooking = false;
+        while (rs.next()) {
+            hasBooking = true;
+            String roomName = rs.getString("ROOM_NAME");
+            double totalPrice = rs.getDouble("TOTAL_PRICE");
+            java.sql.Date checkIn = rs.getDate("CHECK_IN_DATE");
+            java.sql.Date checkOut = rs.getDate("CHECK_OUT_DATE");
+            int bookingId = rs.getInt("BOOKING_ID"); // Lấy ID của booking
+
+            JPanel card = new JPanel();
+            card.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.GRAY, 1));
+            card.setLayout(new java.awt.GridLayout(4, 1));
+            card.add(new javax.swing.JLabel("Phòng: " + roomName));
+            card.add(new javax.swing.JLabel("Tổng tiền: " + String.format("%,.0f", totalPrice) + " VND"));
+            card.add(new javax.swing.JLabel("Nhận phòng: " + checkIn));
+            card.add(new javax.swing.JLabel("Trả phòng: " + checkOut));
+
+            // Thêm sự kiện click vào card
+            card.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    openDanhGiaForm(bookingId, roomName); // Mở form DanhGia
+                }
+            });
+
+            bookedRoomsPanel.add(card);
         }
-        bookedRoomsPanel.revalidate();
-        bookedRoomsPanel.repaint();
+        if (!hasBooking) {
+            bookedRoomsPanel.add(new javax.swing.JLabel("Bạn chưa có phòng nào đã đặt!"));
+        }
+    } catch (Exception ex) {
+        bookedRoomsPanel.add(new javax.swing.JLabel("Lỗi khi tải danh sách phòng đã đặt!"));
+    }
+    bookedRoomsPanel.revalidate();
+    bookedRoomsPanel.repaint();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,9 +128,9 @@ private void loadRoomsToPanel() {
         jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
-        bookedRoomsPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         roomCardsInnerPanel = new javax.swing.JPanel();
+        bookedRoomsPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -285,13 +303,13 @@ private void loadRoomsToPanel() {
 
         jPanel3.setLayout(new java.awt.CardLayout());
 
-        bookedRoomsPanel.setLayout(new java.awt.GridLayout(0, 1, 15, 15));
-        jPanel3.add(bookedRoomsPanel, "card3");
-
         roomCardsInnerPanel.setLayout(new java.awt.GridLayout(0, 5, 15, 15));
         jScrollPane1.setViewportView(roomCardsInnerPanel);
 
         jPanel3.add(jScrollPane1, "card2");
+
+        bookedRoomsPanel.setLayout(new java.awt.GridLayout(0, 1, 15, 15));
+        jPanel3.add(bookedRoomsPanel, "card3");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -335,6 +353,8 @@ private void loadRoomsToPanel() {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (jPanel3.getLayout());
+        cl.show(jPanel3, "card2");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -369,6 +389,23 @@ private void loadRoomsToPanel() {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        int result = javax.swing.JOptionPane.showConfirmDialog(
+        this,
+        "Bạn có chắc chắn muốn đăng xuất không?",
+        "Xác nhận đăng xuất",
+        javax.swing.JOptionPane.YES_NO_OPTION
+    );
+    if (result == javax.swing.JOptionPane.YES_OPTION) {
+        // Đặt lại trạng thái CurrentUser
+        CurrentUser.id = 0;
+        CurrentUser.email = null;
+        CurrentUser.username = null;
+        CurrentUser.role = null;
+        // Mở lại form đăng nhập
+        new DangNhap().setVisible(true);
+        // Đóng form hiện tại
+        this.dispose();
+    }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed

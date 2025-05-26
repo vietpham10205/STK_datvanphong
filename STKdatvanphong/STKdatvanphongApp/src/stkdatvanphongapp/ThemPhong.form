@@ -80,7 +80,7 @@
                                           <Component id="jLabel2" min="-2" pref="135" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jTextField3" alignment="1" min="-2" pref="260" max="-2" attributes="0"/>
+                                      <Component id="DienTich" alignment="1" min="-2" pref="260" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -135,7 +135,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="SucChua" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="jTextField3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="DienTich" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
@@ -285,9 +285,9 @@
             <Property name="text" type="java.lang.String" value="M&#xf4; T&#x1ea3;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="DienTich">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DienTichActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="SucChua">

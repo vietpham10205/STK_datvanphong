@@ -18,10 +18,12 @@ public class ThemPhong extends javax.swing.JFrame {
      */
     // Thêm thuộc tính để lưu roomTypeIds
     private java.util.List<Integer> roomTypeIds;
+    
 
     public ThemPhong() {
         initComponents(); // Đảm bảo các component đã được khởi tạo trước khi thao tác
         // Xóa các item mặc định của combobox
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         LoaiPhong.removeAllItems();
         // Danh sách lưu room_type_id để mapping với thứ tự item
         java.util.List<Integer> roomTypeIds = new java.util.ArrayList<>();
@@ -67,7 +69,7 @@ public class ThemPhong extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         MoTa = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        DienTich = new javax.swing.JTextField();
         SucChua = new javax.swing.JTextField();
         DangKiButton = new javax.swing.JButton();
 
@@ -137,9 +139,9 @@ public class ThemPhong extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Mô Tả");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        DienTich.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                DienTichActionPerformed(evt);
             }
         });
 
@@ -191,7 +193,7 @@ public class ThemPhong extends javax.swing.JFrame {
                                     .addGroup(rolesLayout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(125, 125, 125))
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(DienTich, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(rolesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(rolesLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -231,7 +233,7 @@ public class ThemPhong extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(rolesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(SucChua, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(DienTich, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rolesLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,15 +267,11 @@ public class ThemPhong extends javax.swing.JFrame {
 
     private void TenPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenPhongActionPerformed
         // TODO add your handling code here:
-        String tenPhong = TenPhong.getText().trim();
-    if (tenPhong.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập tên phòng!", "Cảnh báo", javax.swing.JOptionPane.WARNING_MESSAGE);
-        TenPhong.requestFocus();
-    } else {
-        LoaiPhong.requestFocus();
-        // Hiển thị dropdown của combobox khi focus
-        LoaiPhong.showPopup();
-    }
+    String tenPhong = TenPhong.getText();
+        if (checkAndFocus(tenPhong, "Vui lòng nhập tên phòng.")) {
+            LoaiPhong.requestFocus();
+            LoaiPhong.showPopup();
+        }
 
     }//GEN-LAST:event_TenPhongActionPerformed
 
@@ -284,27 +282,66 @@ public class ThemPhong extends javax.swing.JFrame {
 
     private void GiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GiaActionPerformed
         // TODO add your handling code here:
+        String gia = Gia.getText(); 
+        if (checkAndFocus(gia, "Vui lòng nhập giá.")) {
+            DiaChi.requestFocus();
+        }
     }//GEN-LAST:event_GiaActionPerformed
 
     private void DiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiaChiActionPerformed
         // TODO add your handling code here:
+        String diachi=DiaChi.getText();
+        if (checkAndFocus(diachi, "Vui lòng nhập địa chỉ.")) {
+            MoTa.requestFocus();
+        }
     }//GEN-LAST:event_DiaChiActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void DienTichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DienTichActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+        String dienTich = DienTich.getText();
+        if (checkAndFocus(dienTich, "Vui lòng nhập diện tích.")) {
+            Gia.requestFocus();
+        }
+    }//GEN-LAST:event_DienTichActionPerformed
 
     private void SucChuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SucChuaActionPerformed
         // TODO add your handling code here:
+        String sucChua = SucChua.getText();
+        if (checkAndFocus(sucChua, "Vui lòng nhập sức chứa.")) {
+            DienTich.requestFocus();
+        }
     }//GEN-LAST:event_SucChuaActionPerformed
 
     private void DangKiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangKiButtonActionPerformed
         // TODO add your handling code here:
+        DangKiButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    //Xử lý thông tin phòng
+                }
+            }
+        });
+        {
+
+        }
     }//GEN-LAST:event_DangKiButtonActionPerformed
 
     private void LoaiPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoaiPhongActionPerformed
         // TODO add your handling code here:
-        SucChua.requestFocus();
+        LoaiPhong.addFocusListener(new java.awt.event.FocusAdapter() {
+    public void focusGained(java.awt.event.FocusEvent evt) {
+        LoaiPhong.showPopup();
+    }
+});
+    LoaiPhong.addKeyListener(new java.awt.event.KeyAdapter() {
+    @Override
+    public void keyPressed(java.awt.event.KeyEvent evt) {
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            SucChua.requestFocusInWindow(); // chuyển focus khi Enter
+        }
+    }
+});
     }//GEN-LAST:event_LoaiPhongActionPerformed
 
     /**
@@ -342,9 +379,22 @@ public class ThemPhong extends javax.swing.JFrame {
         });
     }
 
+    public boolean checkAndFocus(String value, String message) {
+    if (value == null || value.trim().isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, message, "Cảnh báo", javax.swing.JOptionPane.WARNING_MESSAGE);
+        return false;
+    } else {
+        return true;
+    }
+}
+public void XulythongtinPhong() {
+
+}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DangKiButton;
     private javax.swing.JTextField DiaChi;
+    private javax.swing.JTextField DienTich;
     private javax.swing.JTextField Gia;
     private javax.swing.JButton HuyButton;
     private javax.swing.JComboBox<String> LoaiPhong;
@@ -359,7 +409,6 @@ public class ThemPhong extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel roles;
     // End of variables declaration//GEN-END:variables
 }

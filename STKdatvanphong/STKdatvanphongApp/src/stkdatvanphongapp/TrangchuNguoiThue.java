@@ -132,6 +132,12 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         bookedRoomsPanel = new javax.swing.JPanel();
         roomCardsPanel = new javax.swing.JScrollPane();
         roomCardsInnerPanel = new javax.swing.JPanel();
+        bookedRoomsPanel = new javax.swing.JPanel();
+        Setting = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        panelsettingAccount = new javax.swing.JPanel();
+        usericon = new javax.swing.JLabel();
+        panelsettingUI = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -303,6 +309,77 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
 
         jPanel3.add(roomCardsPanel, "card2");
 
+        bookedRoomsPanel.setLayout(new java.awt.GridLayout(0, 1, 15, 15));
+        jPanel3.add(bookedRoomsPanel, "card3");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Settings");
+
+        panelsettingAccount.setBackground(new java.awt.Color(255, 255, 255));
+
+        usericon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/free-user-icon-3297-thumbsmall.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelsettingAccountLayout = new javax.swing.GroupLayout(panelsettingAccount);
+        panelsettingAccount.setLayout(panelsettingAccountLayout);
+        panelsettingAccountLayout.setHorizontalGroup(
+            panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelsettingAccountLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(usericon)
+                .addContainerGap(884, Short.MAX_VALUE))
+        );
+        panelsettingAccountLayout.setVerticalGroup(
+            panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelsettingAccountLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(usericon)
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+
+        panelsettingUI.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panelsettingUILayout = new javax.swing.GroupLayout(panelsettingUI);
+        panelsettingUI.setLayout(panelsettingUILayout);
+        panelsettingUILayout.setHorizontalGroup(
+            panelsettingUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 418, Short.MAX_VALUE)
+        );
+        panelsettingUILayout.setVerticalGroup(
+            panelsettingUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 194, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout SettingLayout = new javax.swing.GroupLayout(Setting);
+        Setting.setLayout(SettingLayout);
+        SettingLayout.setHorizontalGroup(
+            SettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingLayout.createSequentialGroup()
+                .addGroup(SettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SettingLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(SettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelsettingUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelsettingAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(SettingLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        SettingLayout.setVerticalGroup(
+            SettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panelsettingAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(panelsettingUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        jPanel3.add(Setting, "card4");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -371,6 +448,23 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+     int result = javax.swing.JOptionPane.showConfirmDialog(
+        this,
+        "Bạn có chắc chắn muốn đăng xuất không?",
+        "Xác nhận đăng xuất",
+        javax.swing.JOptionPane.YES_NO_OPTION
+    );
+    if (result == javax.swing.JOptionPane.YES_OPTION) {
+        // Đặt lại trạng thái CurrentUser
+        CurrentUser.id = 0;
+        CurrentUser.email = null;
+        CurrentUser.username = null;
+        CurrentUser.role = null;
+        // Mở lại form đăng nhập
+        new DangNhap().setVisible(true);
+        // Đóng form hiện tại
+        this.dispose();
+    }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -420,6 +514,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Setting;
     private javax.swing.JPanel bookedRoomsPanel;
     private javax.swing.JButton bookmarkbutton;
     private javax.swing.JButton jButton1;
@@ -432,6 +527,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -440,8 +536,11 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel panelsettingAccount;
+    private javax.swing.JPanel panelsettingUI;
     private javax.swing.JPanel roomCardsInnerPanel;
     private javax.swing.JScrollPane roomCardsPanel;
+    private javax.swing.JLabel usericon;
     // End of variables declaration//GEN-END:variables
 }
 

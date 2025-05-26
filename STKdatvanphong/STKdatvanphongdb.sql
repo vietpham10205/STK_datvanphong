@@ -31,6 +31,31 @@ CREATE TABLE LOCATIONS (
     location_name VARCHAR2(100) UNIQUE NOT NULL,
     address VARCHAR2(200) NOT NULL
 );
+-- Bước 1: Tìm và xóa ràng buộc UNIQUE (nếu được đặt tên tự động)
+-- Giả sử bạn chưa đặt tên ràng buộc, ta cần tìm tên ràng buộc trước
+DECLARE
+    v_constraint_name VARCHAR2(100);
+BEGIN
+    SELECT constraint_name INTO v_constraint_name
+    FROM user_constraints
+    WHERE table_name = 'LOCATIONS'
+      AND constraint_type = 'U'
+      AND constraint_name IN (
+          SELECT constraint_name
+          FROM user_cons_columns
+          WHERE table_name = 'LOCATIONS'
+            AND column_name = 'LOCATION_NAME'
+      );
+    
+    EXECUTE IMMEDIATE 'ALTER TABLE LOCATIONS DROP CONSTRAINT ' || v_constraint_name;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        NULL; -- Không tìm thấy ràng buộc UNIQUE, bỏ qua
+END;
+/
+
+-- Bước 2: Bỏ NOT NULL
+ALTER TABLE LOCATIONS MODIFY (location_name VARCHAR2(100) NULL);
 
 -- Tạo bảng ROOMS
 CREATE TABLE ROOMS (
@@ -1130,6 +1155,8 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20085, 'Lỗi khi mua gói dịch vụ: ' || SQLERRM);
 END;
 /
+
+
 
 
 

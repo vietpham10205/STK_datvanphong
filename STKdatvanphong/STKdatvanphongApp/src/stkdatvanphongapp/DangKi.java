@@ -203,6 +203,7 @@ checkdongy.addActionListener(new java.awt.event.ActionListener() {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Email");
 
+        email_text.setText("email");
         email_text.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 email_textActionPerformed(evt);
