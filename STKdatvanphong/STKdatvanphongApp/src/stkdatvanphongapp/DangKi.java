@@ -48,7 +48,7 @@ public class DangKi extends javax.swing.JFrame {
         }
     });
     jButton2.setEnabled(false);
-checkdongy.addActionListener(new java.awt.event.ActionListener() {
+    checkdongy.addActionListener(new java.awt.event.ActionListener() {
     public void actionPerformed(java.awt.event.ActionEvent evt) {
         jButton2.setEnabled(checkdongy.isSelected());
     }

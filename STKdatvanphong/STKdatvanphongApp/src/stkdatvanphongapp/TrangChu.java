@@ -50,7 +50,7 @@ private RoomDAO roomDAO = new RoomDAO();
     // Tạo một instance của form DanhGia
     DanhGia danhGiaForm = new DanhGia();
     danhGiaForm.setTitle("Đánh giá phòng: " + roomName); // Đặt tiêu đề form
-    danhGiaForm.setBookingId(bookingId); // Truyền ID booking vào form (nếu cần)
+    danhGiaForm.setBookingId(bookingId); // Truyền ID booking vào form 
     danhGiaForm.setVisible(true); // Hiển thị forms
 }
      private void loadBookedRoomsPanel() {

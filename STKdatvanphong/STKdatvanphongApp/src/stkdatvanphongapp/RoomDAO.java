@@ -15,7 +15,7 @@ public class RoomDAO {
 
     public List<Room> getAllRooms() {
         List<Room> rooms = new ArrayList<>();
-        // Đảm bảo tên bảng và tên cột đúng với CSDL của bạn
+        
         String sql = "SELECT ROOM_NAME, AREA, PRICE_PER_DAY FROM ROOMS";
 
         try (Connection conn = OracleConnection.getConnection();
@@ -35,7 +35,7 @@ public class RoomDAO {
         return rooms;
     }
 
-    // Có thể bổ sung các phương thức khác nếu cần
+  
 }
 
 //////////List<Room> rooms = new RoomDAO().getAllRooms();

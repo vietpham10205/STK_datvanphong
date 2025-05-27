@@ -34,8 +34,18 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     
     loadRoomsToPanel(); // <-- Thêm dòng này để load danh sách phòng khi mở form
     
+    nameinsetting.setText(CurrentUser.username);
+    RoleSetting.setText(CurrentUser.role);
+    IDsetting.setText(String.valueOf(CurrentUser.id));
+    EmailSetting.setText(CurrentUser.email);
+    
+      thaydoimatkhau.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            new ThayDoiMK().setVisible(true);
+            dispose(); // Đóng form đăng nhập
+        }
+    });
     }
-
     private void loadRoomsToPanel() {
     List<Room> rooms = roomDAO.getAllRooms();
     roomCardsInnerPanel.removeAll(); // roomCardsInnerPanel là JPanel bên trong JScrollPane
@@ -52,7 +62,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     // Tạo một instance của form DanhGia
     DanhGia danhGiaForm = new DanhGia();
     danhGiaForm.setTitle("Đánh giá phòng: " + roomName); // Đặt tiêu đề form
-    danhGiaForm.setBookingId(bookingId); // Truyền ID booking vào form (nếu cần)
+    danhGiaForm.setBookingId(bookingId); // Truyền ID booking vào form 
     danhGiaForm.setVisible(true); // Hiển thị forms
 }
      private void loadBookedRoomsPanel() {
@@ -136,6 +146,17 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         panelsettingAccount = new javax.swing.JPanel();
         usericon = new javax.swing.JLabel();
+        nameinsetting = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        IDsetting = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        EmailSetting = new javax.swing.JLabel();
+        RoleSetting = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        thaydoimatkhau = new javax.swing.JLabel();
         panelsettingUI = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
 
@@ -319,21 +340,102 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
 
         usericon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/free-user-icon-3297-thumbsmall.png"))); // NOI18N
 
+        nameinsetting.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        nameinsetting.setText("jLabel3");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("Tên:");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setText("ID:");
+
+        IDsetting.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        IDsetting.setText("jLabel8");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Email:");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setText("Loại tài khoản:");
+
+        EmailSetting.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        EmailSetting.setText("jLabel11");
+
+        RoleSetting.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        RoleSetting.setText("jLabel12");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("Mật khẩu:");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jLabel11.setText("****************");
+
+        thaydoimatkhau.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        thaydoimatkhau.setForeground(new java.awt.Color(56, 68, 236));
+        thaydoimatkhau.setText("Thay đổi mật khẩu");
+
         javax.swing.GroupLayout panelsettingAccountLayout = new javax.swing.GroupLayout(panelsettingAccount);
         panelsettingAccount.setLayout(panelsettingAccountLayout);
         panelsettingAccountLayout.setHorizontalGroup(
             panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelsettingAccountLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(usericon)
-                .addContainerGap(502, Short.MAX_VALUE))
+                .addGroup(panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelsettingAccountLayout.createSequentialGroup()
+                        .addComponent(usericon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RoleSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelsettingAccountLayout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel11)
+                            .addGap(18, 18, 18)
+                            .addComponent(thaydoimatkhau))
+                        .addGroup(panelsettingAccountLayout.createSequentialGroup()
+                            .addGroup(panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(IDsetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(nameinsetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EmailSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         panelsettingAccountLayout.setVerticalGroup(
             panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelsettingAccountLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(usericon)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGroup(panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelsettingAccountLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(usericon))
+                    .addGroup(panelsettingAccountLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(RoleSetting))))
+                .addGap(8, 8, 8)
+                .addGroup(panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameinsetting)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(IDsetting))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(EmailSetting))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelsettingAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel11)
+                    .addComponent(thaydoimatkhau))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         panelsettingUI.setBackground(new java.awt.Color(255, 255, 255));
@@ -486,6 +588,8 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (jPanel3.getLayout()); // Ép kiểu rõ ràng
+        cl.show(jPanel3, "card4"); // Hiển thị bookedRoomsPanel
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -531,6 +635,9 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel EmailSetting;
+    private javax.swing.JLabel IDsetting;
+    private javax.swing.JLabel RoleSetting;
     private javax.swing.JPanel Setting;
     private javax.swing.JPanel bookedRoomsPanel;
     private javax.swing.JButton bookmarkbutton;
@@ -542,10 +649,16 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -554,10 +667,12 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel nameinsetting;
     private javax.swing.JPanel panelsettingAccount;
     private javax.swing.JPanel panelsettingUI;
     private javax.swing.JPanel roomCardsInnerPanel;
     private javax.swing.JScrollPane roomCardsPanel;
+    private javax.swing.JLabel thaydoimatkhau;
     private javax.swing.JLabel usericon;
     // End of variables declaration//GEN-END:variables
 }
