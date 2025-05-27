@@ -26,6 +26,7 @@ public class ThayDoiMK extends javax.swing.JFrame {
         initComponents();
         setTitle("Change Password");
         setLocationRelativeTo(null); 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         txtNewPasswordModified.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
     public void insertUpdate(javax.swing.event.DocumentEvent e) { checkPasswords(); }
     public void removeUpdate(javax.swing.event.DocumentEvent e) { checkPasswords(); }
@@ -167,7 +168,7 @@ private void checkPasswords() {
             javax.swing.JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công!");
             this.dispose();
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Đsổi mật khẩu thất bại!");
+            javax.swing.JOptionPane.showMessageDialog(this, "Đổi mật khẩu thất bại!");
         }
     } catch (Exception ex) {
         ex.printStackTrace();

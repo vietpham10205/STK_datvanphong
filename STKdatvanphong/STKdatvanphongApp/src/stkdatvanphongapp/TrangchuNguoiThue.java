@@ -42,7 +42,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
       thaydoimatkhau.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             new ThayDoiMK().setVisible(true);
-            dispose(); // Đóng form đăng nhập
+            
         }
     });
     }
