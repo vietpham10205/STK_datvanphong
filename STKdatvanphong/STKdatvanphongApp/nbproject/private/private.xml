@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/capta/Downloads/Project/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/PanelDatPhong.java</file>
-            <file>file:/C:/Users/capta/Downloads/Project/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/DangNhap.java</file>
-            <file>file:/C:/Users/capta/Downloads/Project/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/OracleConnection.java</file>
-            <file>file:/C:/Users/capta/Downloads/Project/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/ThemBaiDang.java</file>
-            <file>file:/C:/Users/capta/Downloads/Project/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/BaiDaDang.java</file>
-            <file>file:/C:/Users/capta/Downloads/Project/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/ThemPhong.java</file>
+            <file>file:/D:/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/DangNhap.java</file>
+            <file>file:/D:/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/ThayDoiMK.java</file>
+            <file>file:/D:/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/PhongDaLuu.java</file>
+            <file>file:/D:/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/TrangChu.java</file>
+            <file>file:/D:/STK_datvanphong/STKdatvanphong/STKdatvanphongApp/src/stkdatvanphongapp/TrangchuNguoiThue.java</file>
         </group>
     </open-files>
 </project-private>

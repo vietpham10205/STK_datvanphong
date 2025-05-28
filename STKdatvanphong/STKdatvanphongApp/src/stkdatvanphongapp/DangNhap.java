@@ -23,7 +23,7 @@ public class DangNhap extends javax.swing.JFrame {
     chuyendendkform.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             new DangKi().setVisible(true);
-            dispose(); // Đóng form đăng nhập, nếu không muốn thì xóa dòng này
+            dispose(); // Đóng form đăng nhập
         }
     });
     }
@@ -212,7 +212,7 @@ public class DangNhap extends javax.swing.JFrame {
     CurrentUser.email = rs.getString("EMAIL");
     CurrentUser.username = rs.getString("USERNAME");
     CurrentUser.role = rs.getString("ROLE");
-    // ...xử lý chuyển màn hình như trước...
+    // xử lý chuyển màn hình như trước.
 
             String role = rs.getString("ROLE");
             if ("Người thuê".equalsIgnoreCase(role)) {

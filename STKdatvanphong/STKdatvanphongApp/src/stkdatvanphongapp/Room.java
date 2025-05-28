@@ -33,7 +33,7 @@ public class Room {
         return pricePerDay;
     }
 
-    // Setters (nếu cần)
+    
     public void setRoomName(String roomName) {
         this.roomName = roomName;
     }
