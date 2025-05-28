@@ -26,6 +26,7 @@ public class ThemBaiDang extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        DangKiButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -33,6 +34,19 @@ public class ThemBaiDang extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+
+        DangKiButton.setBackground(new java.awt.Color(51, 51, 51));
+        DangKiButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        DangKiButton.setForeground(new java.awt.Color(255, 255, 255));
+        DangKiButton.setText("Đăng Kí");
+        DangKiButton.setBorder(null);
+        DangKiButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DangKiButtonActionPerformed(evt);
+            }
+        });
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Gói Áp Dụng");
@@ -60,27 +74,26 @@ public class ThemBaiDang extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(364, 364, 364)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(33, Short.MAX_VALUE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,8 +101,8 @@ public class ThemBaiDang extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -97,8 +110,143 @@ public class ThemBaiDang extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void DangKiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangKiButtonActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_DangKiButtonActionPerformed
+//     void public xulybaidang()
+//     {
+//         try {
+//         con = OracleConnection.getConnection();
+//         con.setAutoCommit(false); // Bắt đầu transaction
+//         // 2. Insert location mới
+//         String insertLocation = "INSERT INTO LOCATIONS (location_name, address) VALUES (?, ?)";
+//         pst = con.prepareStatement(insertLocation);
+//         pst.setString(1, locationName);
+//         pst.setString(2, diaChi);
+//         pst.executeUpdate();
+//         pst.close();
+//         // 3. Lấy location_id vừa tạo
+//         String getLocationId = "SELECT location_id FROM LOCATIONS WHERE location_name = ? AND address = ? ORDER BY location_id DESC FETCH FIRST 1 ROWS ONLY";
+//         pst = con.prepareStatement(getLocationId);
+//         pst.setString(1, locationName);
+//         pst.setString(2, diaChi);
+//         rs = pst.executeQuery();
+//         if (rs.next()) {
+//             locationId = rs.getInt("location_id");
+//         } else {
+//             throw new Exception("Không lấy được location_id!");
+//         }
+//         rs.close();
+//         pst.close();
+//         // Lưu thông tin phòng tạm vào PhongTam
+//         PhongTam.setAll(tenPhong, diaChi, moTa, sucChua, gia, dienTich, roomTypeId, locationId);
+//         // Chuyển sang panel ThemBaiDang
+//         
+//         
+//     } catch (Exception e) {
+//         e.printStackTrace();
+//         javax.swing.JOptionPane.showMessageDialog(this, "Lỗi khi thêm phòng: " + e.getMessage(), "Lỗi", javax.swing.JOptionPane.ERROR_MESSAGE);
+//     } finally {
+//         try { if (rs != null) rs.close(); } catch (Exception ex) {}
+//         try { if (pst != null) pst.close(); } catch (Exception ex) {}
+//         try { if (con != null) con.close(); } catch (Exception ex) {}
+//     }
+// }
+    
+    public void Huyaction()
+    {
+        
+    }
+    public void Xulythongtinbaidang() {
+        java.sql.Connection con = null;
+        java.sql.PreparedStatement pst = null;
+        java.sql.ResultSet rs = null;
+        try {
+            con = OracleConnection.getConnection();
+            con.setAutoCommit(false); // Bắt đầu transaction
+
+            // 1. Insert location mới
+            String insertLocation = "INSERT INTO LOCATIONS (location_name, address) VALUES (?, ?)";
+            pst = con.prepareStatement(insertLocation);
+            pst.setString(1, PhongTam.getLocationName()); // hoặc tên địa điểm, tuỳ logic
+            pst.setString(2, PhongTam.getDiaChi());
+            pst.executeUpdate();
+            pst.close();
+
+            // 2. Lấy location_id vừa tạo
+            String getLocationId = "SELECT location_id FROM LOCATIONS WHERE location_name = ? AND address = ? ORDER BY location_id DESC FETCH FIRST 1 ROWS ONLY";
+            pst = con.prepareStatement(getLocationId);
+            pst.setString(1, PhongTam.getTenPhong());
+            pst.setString(2, PhongTam.getDiaChi());
+            rs = pst.executeQuery();
+            int locationId = -1;
+            if (rs.next()) {
+                locationId = rs.getInt("location_id");
+            } else {
+                throw new Exception("Không lấy được location_id!");
+            }
+            rs.close();
+            pst.close();
+
+            // 3. Insert room mới với location_id vừa lấy
+            String insertRoom = "INSERT INTO ROOMS (room_name, description, price, area, capacity, room_type_id, location_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            pst = con.prepareStatement(insertRoom, new String[]{"room_id"});
+            pst.setString(1, PhongTam.getTenPhong());
+            pst.setString(2, PhongTam.getMoTa());
+            pst.setDouble(3, PhongTam.getGia());
+            pst.setDouble(4, PhongTam.getDienTich());
+            pst.setInt(5, PhongTam.getSucChua());
+            pst.setInt(6, PhongTam.getRoomTypeId());
+            pst.setInt(7, locationId);
+            pst.executeUpdate();
+            // 4. Lấy room_id vừa tạo
+            String getRoomId = "SELECT room_id FROM ROOMS WHERE room_name = ? AND location_id = ? ORDER BY room_id DESC FETCH FIRST 1 ROWS ONLY";
+            pst.close();
+            pst = con.prepareStatement(getRoomId);
+            pst.setString(1, PhongTam.getTenPhong());
+            pst.setInt(2, locationId);
+            rs = pst.executeQuery();
+            int roomId = -1;
+            if (rs.next()) {
+                roomId = rs.getInt("room_id");
+            } else {
+                throw new Exception("Không lấy được room_id!");
+            }
+            rs.close();
+            pst.close();
+
+            // 5. Insert post mới
+            String insertPost = "INSERT INTO POSTS (user_id, room_id, package_id, title, content) VALUES (?, ?, ?, ?, ?)";
+            pst = con.prepareStatement(insertPost);
+            pst.setInt(1, CurrentUser.id); // Đảm bảo CurrentUser.id đã được set
+            pst.setInt(2, roomId);
+            pst.setInt(3, jComboBox1.getSelectedIndex() + 1); // package_id, tuỳ logic mapping combobox
+            pst.setString(4, jTextField1.getText()); // title
+            pst.setString(5, jTextArea1.getText()); // content
+            pst.executeUpdate();
+            pst.close();
+
+            con.commit();
+            javax.swing.JOptionPane.showMessageDialog(null, "Đăng bài thành công!", "Thành công", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            // Reset form sau khi đăng thành công
+            jTextField1.setText("");
+            jTextArea1.setText("");
+            jComboBox1.setSelectedIndex(0);
+            PhongTam.setAll("", "", "", 0, 0, 0, 0, 0,"");
+        } catch (Exception e) {
+            try { if (con != null) con.rollback(); } catch (Exception ex) {}
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null, "Lỗi khi đăng bài: " + e.getMessage(), "Lỗi", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try { if (rs != null) rs.close(); } catch (Exception ex) {}
+            try { if (pst != null) pst.close(); } catch (Exception ex) {}
+            try { if (con != null) con.close(); } catch (Exception ex) {}
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DangKiButton;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
