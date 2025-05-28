@@ -27,7 +27,21 @@ public class BaiDaDang extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
+        PanelThemBD = new javax.swing.JPanel();
         ThemButton = new javax.swing.JButton();
+
+        javax.swing.GroupLayout PanelThemBDLayout = new javax.swing.GroupLayout(PanelThemBD);
+        PanelThemBD.setLayout(PanelThemBDLayout);
+        PanelThemBDLayout.setHorizontalGroup(
+            PanelThemBDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 671, Short.MAX_VALUE)
+        );
+        PanelThemBDLayout.setVerticalGroup(
+            PanelThemBDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 330, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(PanelThemBD);
 
         ThemButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/plus.jpg"))); // NOI18N
         ThemButton.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +77,7 @@ public class BaiDaDang extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelThemBD;
     private javax.swing.JButton ThemButton;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

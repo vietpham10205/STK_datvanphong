@@ -24,7 +24,7 @@ public class ThemPhong extends javax.swing.JFrame {
     
 
     public ThemPhong() {
-        initComponents(); 
+        initComponents();
         jPanel1.setLayout(new java.awt.CardLayout()); // Đặt CardLayout cho panel chuyển động
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         // thembd = null;
@@ -158,12 +158,16 @@ public class ThemPhong extends javax.swing.JFrame {
             if (thembd == null) {
                 thembd = new ThemBaiDang();
                 jPanel1.add(thembd, "cardthembd");
+                jPanel1.revalidate();
+                jPanel1.repaint();
             }
             // Thực hiện hàm xử lý thông tin phòng
             themphong.XulythongtinPhong();
             cl.show(jPanel1, "cardthembd");
+            thembd.focusthembd();
         } else if (current == thembd) {
-            
+            thembd.Xulythongtinbaidang();
+            this.dispose();
         }
     }//GEN-LAST:event_DangKiButtonActionPerformed
 
@@ -181,7 +185,6 @@ public class ThemPhong extends javax.swing.JFrame {
             // Nếu đang ở card nhập phòng, xử lý như nút Hủy
             this.dispose();
             if (themphong != null) themphong.Huyaction();
-            if (thembd != null) thembd.Huyaction();
         } else if (current == thembd) {
             // Nếu đang ở card ThemBaiDang, chuyển về card nhập phòng
             cl.show(jPanel1, "cardthemphong");
@@ -192,7 +195,6 @@ public class ThemPhong extends javax.swing.JFrame {
         // TODO add your handling code here:
                 this.dispose();
         if (themphong != null) themphong.Huyaction();
-        if (thembd != null) thembd.Huyaction();
     }//GEN-LAST:event_HuyButton1ActionPerformed
 
     /**

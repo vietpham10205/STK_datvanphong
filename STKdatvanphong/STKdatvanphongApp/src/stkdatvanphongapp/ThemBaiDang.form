@@ -52,10 +52,10 @@
                       <EmptySpace min="-2" pref="364" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" pref="198" max="-2" attributes="0"/>
+                          <Component id="GoiCombo" min="-2" pref="198" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jTextField1" alignment="0" min="-2" pref="401" max="-2" attributes="0"/>
+                  <Component id="TitleText" alignment="0" min="-2" pref="401" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="43" max="32767" attributes="0"/>
@@ -72,8 +72,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="TitleText" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="GoiCombo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -93,7 +93,7 @@
         <Property name="text" type="java.lang.String" value="G&#xf3;i &#xc1;p D&#x1ee5;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="GoiCombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -104,6 +104,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GoiComboActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -116,9 +119,9 @@
         <Property name="text" type="java.lang.String" value="Ti&#xea;u &#x111;&#x1ec1; b&#xe0;i &#x111;&#x103;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="TitleText">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TitleTextActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -133,7 +136,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="ContentText">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
