@@ -3,22 +3,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package stkdatvanphongapp;
+import javax.swing.BorderFactory;
+import java.awt.Color;
+import javax.swing.BoxLayout;
 
 /**
  *
  * @author capta
  */
 public class BaiDangCard extends javax.swing.JPanel {
-
+    private int postId;
     /**
      * Creates new form BaiDangCard
      */
     public BaiDangCard() {
         initComponents();
+        Title.setEditable(false);
+        Title.setOpaque(true); // Nếu muốn giống JLabel
+        Title.setFocusable(false); // Không cho focus
+        Title.setBackground(new Color(255,255,255)); // Đặt nền trắng
     }
-    public void setTit(String m)
+    public void setTitle(String m)
     {
-        jLabel1.setText(m);
+        Title.setText(m);
+    }
+    public void setPostId(int postId) {
+        this.postId = postId;
     }
 
     /**
@@ -30,26 +40,54 @@ public class BaiDangCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Title = new javax.swing.JTextArea();
 
-        setPreferredSize(new java.awt.Dimension(50, 40));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 50, 50), 2));
+        setPreferredSize(new java.awt.Dimension(150, 100));
 
-        jLabel1.setText("jLabel1");
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
+
+        Title.setColumns(20);
+        Title.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Title.setLineWrap(true);
+        Title.setRows(5);
+        Title.setWrapStyleWord(true);
+        Title.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        Title.setRequestFocusEnabled(false);
+        Title.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TitleMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Title);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void TitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TitleMouseClicked
+        // TODO add your handling code here:
+        if (evt.getButton() == java.awt.event.MouseEvent.BUTTON1) { // Chuột trái
+            SuaXoaBD suaXoaBD = new SuaXoaBD();
+            suaXoaBD.setLocationRelativeTo(null); // Hiển thị ở giữa màn hình
+            suaXoaBD.setVisible(true);
+        }
+    }//GEN-LAST:event_TitleMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextArea Title;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
