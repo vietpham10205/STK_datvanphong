@@ -13,12 +13,14 @@ public class Room {
     private String roomName;
     private double area;
     private double pricePerDay;
+    private int roomId;
 
-    public Room(String roomName, double area, double pricePerDay) {
-        this.roomName = roomName;
-        this.area = area;
-        this.pricePerDay = pricePerDay;
-    }
+    public Room(int roomId, String roomName, double area, double pricePerDay) {
+    this.roomId = roomId;
+    this.roomName = roomName;
+    this.area = area;
+    this.pricePerDay = pricePerDay;
+}
 
     // Getters
     public String getRoomName() {
@@ -28,6 +30,12 @@ public class Room {
     public double getArea() {
         return area;
     }
+    
+  
+public int getRoomId() {
+    return roomId;
+}
+
 
     public double getPricePerDay() {
         return pricePerDay;

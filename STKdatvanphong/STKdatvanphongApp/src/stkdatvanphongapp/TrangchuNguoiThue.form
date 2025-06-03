@@ -362,8 +362,7 @@
                 </Container>
               </SubComponents>
             </Container>
-<<<<<<< HEAD
-=======
+
             <Container class="javax.swing.JPanel" name="bookedRoomsPanel">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
@@ -674,7 +673,7 @@
                 </Container>
               </SubComponents>
             </Container>
->>>>>>> 344c35c10aa61227ada420cf05b3878c48beceff
+
           </SubComponents>
         </Container>
       </SubComponents>
