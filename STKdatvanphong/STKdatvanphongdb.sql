@@ -846,7 +846,7 @@ EXCEPTION
 END;
 /
 BEGIN
-    confirm_booking(21);  
+    confirm_booking(22);  
 END;
 /
 -- Stored Procedure: Hủy đặt phòng
