@@ -6,6 +6,8 @@ package stkdatvanphongapp;
 import javax.swing.BorderFactory;
 import java.awt.Color;
 import javax.swing.BoxLayout;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,13 +18,21 @@ public class BaiDangCard extends javax.swing.JPanel {
     /**
      * Creates new form BaiDangCard
      */
-    public BaiDangCard() {
-        initComponents();
-        Title.setEditable(false);
+    private int roomId;
+    private int bookingId = -1;
+public BaiDangCard(int roomId) {
+    this.roomId = roomId;
+    initComponents();
+    BookingDAO bookingDAO = new BookingDAO();
+    Booking booking = bookingDAO.getActiveOrPendingBookingByRoomId(roomId);
+    updateBookingStatus(booking);
+    Title.setEditable(false);
         Title.setOpaque(true); // Nếu muốn giống JLabel
         Title.setFocusable(false); // Không cho focus
         Title.setBackground(new Color(255,255,255)); // Đặt nền trắng
-    }
+}
+    
+   
     public void setTitle(String m)
     {
         Title.setText(m);
@@ -30,7 +40,37 @@ public class BaiDangCard extends javax.swing.JPanel {
     public void setPostId(int postId) {
         this.postId = postId;
     }
-
+    public void setStatus(String status) {
+    lblStatus.setText(status);
+}
+public void xacNhanBooking(int bookingId) {
+    String sql = "{call confirm_booking(?)}";
+    try (Connection conn = OracleConnection.getConnection();
+         CallableStatement cs = conn.prepareCall(sql)) {
+        cs.setInt(1, bookingId);
+        cs.execute();
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        // Có thể thêm JOptionPane.showMessageDialog(null, "Lỗi xác nhận: " + ex.getMessage());
+    }
+}
+public void updateBookingStatus(Booking booking) {
+    btnXacNhan.setEnabled(false); // Mặc định vô hiệu hóa
+    if (booking == null) {
+        setStatus("Trống");
+        bookingId = -1;
+    } else if ("Chờ xác nhận".equals(booking.getStatus())) {
+        setStatus("Chờ xác nhận");
+        btnXacNhan.setEnabled(true);
+        bookingId = booking.getBookingId();
+    } else if ("Đã xác nhận".equals(booking.getStatus()) && !booking.getCheckOut().before(new java.sql.Date(System.currentTimeMillis()))) {
+        setStatus("Đang bận");
+        bookingId = -1;
+    } else {
+        setStatus("Trống");
+        bookingId = -1;
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,10 +82,12 @@ public class BaiDangCard extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         Title = new javax.swing.JTextArea();
+        lblStatus = new javax.swing.JLabel();
+        btnXacNhan = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 50, 50), 2));
-        setPreferredSize(new java.awt.Dimension(150, 100));
+        setPreferredSize(new java.awt.Dimension(294, 261));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(null);
@@ -56,6 +98,7 @@ public class BaiDangCard extends javax.swing.JPanel {
         Title.setRows(5);
         Title.setWrapStyleWord(true);
         Title.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        Title.setPreferredSize(new java.awt.Dimension(284, 202));
         Title.setRequestFocusEnabled(false);
         Title.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -64,15 +107,36 @@ public class BaiDangCard extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(Title);
 
+        lblStatus.setText("    ");
+
+        btnXacNhan.setText("Xác Nhận");
+        btnXacNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXacNhanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnXacNhan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(109, 109, 109))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnXacNhan)
+                .addGap(12, 12, 12))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -85,9 +149,18 @@ public class BaiDangCard extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_TitleMouseClicked
 
+    private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
+        // TODO add your handling code here:
+          if (bookingId != -1) {
+        xacNhanBooking(bookingId);
+          }
+    }//GEN-LAST:event_btnXacNhanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Title;
+    private javax.swing.JButton btnXacNhan;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblStatus;
     // End of variables declaration//GEN-END:variables
 }

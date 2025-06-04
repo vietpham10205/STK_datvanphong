@@ -845,7 +845,10 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20050, 'Lỗi khi xác nhận đặt phòng: ' || SQLERRM);
 END;
 /
-
+BEGIN
+    confirm_booking(21);  
+END;
+/
 -- Stored Procedure: Hủy đặt phòng
 CREATE OR REPLACE PROCEDURE cancel_booking(p_booking_id IN NUMBER) IS
 BEGIN
