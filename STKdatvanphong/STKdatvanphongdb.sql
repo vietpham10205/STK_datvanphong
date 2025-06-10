@@ -336,7 +336,11 @@ INSERT INTO PACKAGES (package_name, price, duration_days, priority_level) VALUES
 -- USER_PACKAGES
 INSERT INTO USER_PACKAGES (user_id, package_id, start_date) VALUES (3, 3, SYSDATE - 5);
 INSERT INTO USER_PACKAGES (user_id, package_id, start_date) VALUES (4, 4, SYSDATE - 10);
-
+INSERT INTO USER_PACKAGES (user_id, package_id, start_date) VALUES (4, 4, SYSDATE - 10);
+INSERT INTO USER_PACKAGES (user_id, package_id, start_date) VALUES (61, 1, SYSDATE );
+INSERT INTO USER_PACKAGES (user_id, package_id, start_date) VALUES (61, 2, SYSDATE );
+INSERT INTO USER_PACKAGES (user_id, package_id, start_date) VALUES (61, 3, SYSDATE );
+INSERT INTO USER_PACKAGES (user_id, package_id, start_date) VALUES (61, 4, SYSDATE );
 -- POSTS từ host01
 INSERT INTO POSTS (user_id, room_id, package_id, title, content, status)
 VALUES (3, 1, 3, 'Cho thuê văn phòng chia sẻ Quận 1', 'Không gian làm việc hiện đại, trung tâm, tiện nghi đầy đủ.', 'Đã duyệt');
@@ -841,7 +845,10 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20050, 'Lỗi khi xác nhận đặt phòng: ' || SQLERRM);
 END;
 /
-
+BEGIN
+    confirm_booking(22);  
+END;
+/
 -- Stored Procedure: Hủy đặt phòng
 CREATE OR REPLACE PROCEDURE cancel_booking(p_booking_id IN NUMBER) IS
 BEGIN

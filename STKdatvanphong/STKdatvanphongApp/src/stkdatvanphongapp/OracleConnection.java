@@ -12,9 +12,12 @@ import java.sql.*;
 public class OracleConnection {
     
     public static Connection getConnection() throws SQLException {
-        String url = "jdbc:oracle:thin:@//localhost:1521/WEEK5PDB"; 
+        String url = "jdbc:oracle:thin:@//localhost:1521/WEEK5PDB"; // đổi đường dẫn db lại nếu cần
         String username = "week5"; 
         String password = "userpass"; 
         return DriverManager.getConnection(url, username, password);
     }
 }
+
+
+

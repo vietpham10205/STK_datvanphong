@@ -14,25 +14,25 @@ import java.util.List;
 public class RoomDAO {
 
     public List<Room> getAllRooms() {
-        List<Room> rooms = new ArrayList<>();
-        
-        String sql = "SELECT ROOM_NAME, AREA, PRICE_PER_DAY FROM ROOMS";
+       List<Room> rooms = new ArrayList<>();
+    String sql = "SELECT ROOM_ID, ROOM_NAME, AREA, PRICE_PER_DAY FROM ROOMS";
 
-        try (Connection conn = OracleConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+    try (Connection conn = OracleConnection.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(sql);
+         ResultSet rs = pstmt.executeQuery()) {
 
-            while (rs.next()) {
-                String roomName = rs.getString("ROOM_NAME");
-                double area = rs.getDouble("AREA");
-                double pricePerDay = rs.getDouble("PRICE_PER_DAY");
-                rooms.add(new Room(roomName, area, pricePerDay));
-            }
-        } catch (SQLException e) {
-            System.err.println("Lỗi khi lấy danh sách phòng từ cơ sở dữ liệu: " + e.getMessage());
-            e.printStackTrace();
+        while (rs.next()) {
+            int roomId = rs.getInt("ROOM_ID");
+            String roomName = rs.getString("ROOM_NAME");
+            double area = rs.getDouble("AREA");
+            double pricePerDay = rs.getDouble("PRICE_PER_DAY");
+            rooms.add(new Room(roomId, roomName, area, pricePerDay));
         }
-        return rooms;
+    } catch (SQLException e) {
+        System.err.println("Lỗi khi lấy danh sách phòng từ cơ sở dữ liệu: " + e.getMessage());
+        e.printStackTrace();
+    }
+    return rooms;
     }
 
   

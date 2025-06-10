@@ -29,7 +29,7 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         setLocationRelativeTo(null); 
         setTitle("STKdatvanphong");
         jLabel3.setText(CurrentUser.username); // Hiển thị tên user hiện tại
-        // Đặt layout cho bookedRoomsPanel (nếu bạn đã kéo thả panel này trong GUI)
+        
     bookedRoomsPanel.setLayout(new javax.swing.BoxLayout(bookedRoomsPanel, javax.swing.BoxLayout.Y_AXIS));
     
     loadRoomsToPanel(); // <-- Thêm dòng này để load danh sách phòng khi mở form
@@ -46,17 +46,26 @@ public class TrangchuNguoiThue extends javax.swing.JFrame {
         }
     });
     }
-    private void loadRoomsToPanel() {
+   private void loadRoomsToPanel() {
     List<Room> rooms = roomDAO.getAllRooms();
-    roomCardsInnerPanel.removeAll(); // roomCardsInnerPanel là JPanel bên trong JScrollPane
+    roomCardsInnerPanel.removeAll(); 
 
     for (Room room : rooms) {
         RoomCard card = new RoomCard(room);
+
+        // Thêm sự kiện click cho card phòng
+        card.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                // Mở form đặt phòng, truyền userId và roomId
+                new formDatPhong(CurrentUser.id, room.getRoomId()).setVisible(true);
+            }
+        });
+
         roomCardsInnerPanel.add(card);
     }
     roomCardsInnerPanel.revalidate();
     roomCardsInnerPanel.repaint();
-    }
+}
 
     private void openDanhGiaForm(int bookingId, String roomName) {
     // Tạo một instance của form DanhGia

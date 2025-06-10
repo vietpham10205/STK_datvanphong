@@ -26,20 +26,21 @@ public class BaiDaDang extends javax.swing.JPanel {
     private void addPostCards(){
         try {
             java.sql.Connection con = OracleConnection.getConnection();
-            String sql = "SELECT p.title, p.post_id FROM POSTS p WHERE p.user_id = ? ORDER BY p.post_id DESC";
+            String sql = "SELECT p.title, p.post_id, p.room_id FROM POSTS p WHERE p.user_id = ? ORDER BY p.post_id DESC";
             java.sql.PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, CurrentUser.id);
             java.sql.ResultSet rs = pst.executeQuery();
             PanelThemBD.removeAll();
             PanelThemBD.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
             while (rs.next()) {
-                String title = rs.getString("title");
-                int postId = rs.getInt("post_id");
-                BaiDangCard card = new BaiDangCard();
-                card.setPostId(postId); 
-                card.setTitle(title); // Hàm setTitle cần có trong BaiDangCard
-                PanelThemBD.add(card);
-            }
+    String title = rs.getString("title");
+    int postId = rs.getInt("post_id");
+    int roomId = rs.getInt("room_id"); // Lấy room_id
+    BaiDangCard card = new BaiDangCard(roomId); // Truyền roomId vào constructor
+    card.setPostId(postId); 
+    card.setTitle(title);
+    PanelThemBD.add(card);
+}
             rs.close();
             pst.close();
             con.close();
