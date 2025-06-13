@@ -23,7 +23,40 @@ public formDatPhong(int userId, int roomId) {
     txtRoomId.setText(String.valueOf(roomId));
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 }
+private void loadGia()
+{
+    try (Connection conn = OracleConnection.getConnection()) {
+    // Lấy dữ liệu từ JTextField
+    String checkInStr = txtCheckIn.getText().trim().replace('/', '-');
+    String checkOutStr = txtCheckOut.getText().trim().replace('/', '-');
+    int guestCount = Integer.parseInt(txtGuestCount.getText().trim());
 
+    // Kiểm tra định dạng ngày và chuyển đổi
+    java.sql.Date checkIn, checkOut;
+    try {
+        checkIn = java.sql.Date.valueOf(checkInStr);   // yyyy-MM-dd
+        checkOut = java.sql.Date.valueOf(checkOutStr); // yyyy-MM-dd
+    } catch (IllegalArgumentException ex) {
+        JOptionPane.showMessageDialog(this, "Ngày phải theo định dạng yyyy-MM-dd!");
+        return;
+    }
+    // Lấy giá phòng và số ngày
+        String sql = "SELECT price_per_day FROM ROOMS WHERE room_id = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, roomId);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            int pricePerDay = rs.getInt(1);
+            long days = (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24);
+            if (days <= 0) days = 1;
+            int total = (int) days * pricePerDay;
+            lblGia.setText(total + " VNĐ"); }
+    }
+    catch (Exception e)
+    {
+        e.printStackTrace();
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,6 +119,11 @@ public formDatPhong(int userId, int roomId) {
         jLabel8.setText("Ngày Check-out");
 
         txtCheckOut.setText("yy/mm/dd");
+        txtCheckOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCheckOutActionPerformed(evt);
+            }
+        });
 
         txtCheckIn.setText("yy/mm/dd");
         txtCheckIn.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +141,7 @@ public formDatPhong(int userId, int roomId) {
             }
         });
 
-        lblGia.setText("jLabel6");
+        lblGia.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -229,18 +267,7 @@ public formDatPhong(int userId, int roomId) {
     cs.setInt(5, guestCount);
     cs.execute();
 
-        // Lấy giá phòng và số ngày
-        String sql = "SELECT price_per_day FROM ROOMS WHERE room_id = ?";
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, roomId);
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            int pricePerDay = rs.getInt(1);
-            long days = (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24);
-            if (days <= 0) days = 1;
-            int total = (int) days * pricePerDay;
-            lblGia.setText("Giá đặt phòng: " + total + " VNĐ");
-        }
+
         JOptionPane.showMessageDialog(this, "Đặt phòng thành công!");
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(this, "Lỗi SQL: " + ex.getMessage());
@@ -251,11 +278,17 @@ public formDatPhong(int userId, int roomId) {
 
     private void txtCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCheckInActionPerformed
         // TODO add your handling code here:
+        loadGia();
     }//GEN-LAST:event_txtCheckInActionPerformed
 
     private void txtGuestCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGuestCountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGuestCountActionPerformed
+
+    private void txtCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCheckOutActionPerformed
+        // TODO add your handling code here:
+        loadGia();
+    }//GEN-LAST:event_txtCheckOutActionPerformed
 
     /**
      * @param args the command line arguments

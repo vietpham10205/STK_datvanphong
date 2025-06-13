@@ -5,6 +5,7 @@
 package stkdatvanphongapp;
 import java.sql.*;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author admin
@@ -27,38 +28,7 @@ public class DangNhap extends javax.swing.JFrame {
         }
     });
     }
-    public int CheckLogin(String email, String pass)
-    {
-        
-    try (Connection conn = OracleConnection.getConnection()) {
-        String sql = "SELECT USER_ID, EMAIL, USERNAME, ROLE FROM USERS WHERE EMAIL = ? AND PASSWORD = ?";
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, email);
-        ps.setString(2, pass);
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {  
-                //////////// lưu thông tin user hiện tại
-    CurrentUser.id = rs.getInt("USER_ID");
-    CurrentUser.email = rs.getString("EMAIL");
-    CurrentUser.username = rs.getString("USERNAME");
-    CurrentUser.role = rs.getString("ROLE");
-    // xử lý chuyển màn hình như trước.
-    String role = rs.getString("ROLE");
-            if ("Người thuê".equalsIgnoreCase(role)) {
-                return 1;
-            } else if ("Banned".equalsIgnoreCase(role)) {
-                return 2;
-            } else {
-                return 3;
-            }
-        } else {
-            return 0;
-        }
-    } catch (Exception ex) {
-        ex.printStackTrace();
-        return -1;
-    }
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -230,7 +200,8 @@ public class DangNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
         String email = o_nhap_email.getText().trim();
         String pass = o_nhap_mk.getText().trim();
-       int check =CheckLogin(email,pass);
+        Controller control=new Controller();
+       int check =control.CheckLogin(email,pass);
        if (check==1) {
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
                 new TrangchuNguoiThue().setVisible(true);
