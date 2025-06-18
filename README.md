@@ -56,16 +56,7 @@
   - Kết nối với người thuê
   - Xem thống kê sử dụng phòng
 
-### 🔹 Admin
-- Quản trị hệ thống.
-- Chức năng:
-  - Phân quyền tài khoản
-  - Duyệt bài đăng
-  - Gửi thông báo
-  - Xóa hoặc cập nhật thông tin người dùng
-  - Cập nhật đánh giá lên website
 
----
 
 ## 🔄 Quy trình chi tiết
 
